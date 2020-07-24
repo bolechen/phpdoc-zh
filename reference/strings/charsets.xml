@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Revision$ -->
+<!-- EN-Revision: 322902 Maintainer: daijie Status: ready -->
+<para xmlns="http://docbook.org/ns/docbook">
+ 支持以下字符集：
+ <table>
+  <title>支持的字符集列表</title>
+  <tgroup cols="3">
+   <thead>
+    <row>
+     <entry>字符集</entry>
+     <entry>别名</entry>
+     <entry>描述</entry>
+    </row>
+   </thead>
+   <tbody>
+    <row>
+     <entry>ISO-8859-1</entry>
+     <entry>ISO8859-1</entry>
+     <entry>
+      西欧，Latin-1
+     </entry>
+    </row>
+    <row>
+     <entry>ISO-8859-5</entry>
+     <entry>ISO8859-5</entry>
+     <entry>
+      Little used cyrillic charset (Latin/Cyrillic).
+     </entry>
+    </row>
+    <row>
+     <entry>ISO-8859-15</entry>
+     <entry>ISO8859-15</entry>
+     <entry>
+      西欧，Latin-9。增加欧元符号，法语和芬兰语字母在 Latin-1(ISO-8859-1) 中缺失。
+     </entry>
+    </row>
+    <row>
+     <entry>UTF-8</entry>
+     <entry></entry>
+     <entry>
+      ASCII 兼容的多字节 8 位 Unicode。
+     </entry>
+    </row>
+    <row>
+     <entry>cp866</entry>
+     <entry>ibm866, 866</entry>
+     <entry>
+      DOS 特有的西里尔编码。本字符集在 4.3.2 版本中得到支持。
+     </entry>
+    </row>
+    <row>
+     <entry>cp1251</entry>
+     <entry>Windows-1251, win-1251, 1251</entry>
+     <entry>
+      Windows 特有的西里尔编码。本字符集在 4.3.2 版本中得到支持。
+     </entry>
+    </row>
+    <row>
+     <entry>cp1252</entry>
+     <entry>Windows-1252, 1252</entry>
+     <entry>
+      Windows 特有的西欧编码。
+     </entry>
+    </row>
+    <row>
+     <entry>KOI8-R</entry>
+     <entry>koi8-ru, koi8r</entry>
+     <entry>
+      俄语。本字符集在 4.3.2 版本中得到支持。
+     </entry>
+    </row>
+    <row>
+     <entry>BIG5</entry>
+     <entry>950</entry>
+     <entry>
+      繁体中文，主要用于中国台湾省。
+     </entry>
+    </row>
+    <row>
+     <entry>GB2312</entry>
+     <entry>936</entry>
+     <entry>
+      简体中文，中国国家标准字符集。
+     </entry>
+    </row>
+    <row>
+     <entry>BIG5-HKSCS</entry>
+     <entry></entry>
+     <entry>
+      繁体中文，附带香港扩展的 Big5 字符集。
+     </entry>
+    </row>
+    <row>
+     <entry>Shift_JIS</entry>
+     <entry>SJIS, 932</entry>
+     <entry>
+      日语
+     </entry>
+    </row>
+    <row>
+     <entry>EUC-JP</entry>
+     <entry>EUCJP</entry>
+     <entry>
+      日语
+     </entry>
+    </row>
+    <row>
+     <entry>MacRoman</entry>
+     <entry></entry>
+     <entry>
+      Mac OS 使用的字符串。
+     </entry>
+    </row>
+    <row>
+     <entry><literal>''</literal></entry>
+     <entry></entry>
+     <entry>
+      An empty string activates detection from script encoding (Zend multibyte),
+      <link linkend="ini.default-charset">default_charset</link> and current
+      locale (see <function>nl_langinfo</function> and
+      <function>setlocale</function>), in this order. Not recommended.
+     </entry>
+    </row>
+   </tbody>
+  </tgroup>
+ </table>
+ <note>
+  <simpara>
+   其他字符集没有认可。将会使用默认编码并抛出异常。
+  </simpara>
+ </note>
+</para>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"~/.phpdoc/manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->

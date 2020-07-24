@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Revision$ -->
+<!-- EN-Revision: 308663 Maintainer: HonestQiao Status: ready -->
+<!-- Reviewed: no Maintainer: HonestQiao -->
+<refentry xml:id="function.chgrp" xmlns="http://docbook.org/ns/docbook">
+ <refnamediv>
+  <refname>chgrp</refname>
+  <refpurpose>改变文件所属的组</refpurpose>
+ </refnamediv>
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>bool</type><methodname>chgrp</methodname>
+   <methodparam><type>string</type><parameter>filename</parameter></methodparam>
+   <methodparam><type>mixed</type><parameter>group</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+   尝试将文件 <parameter>filename</parameter> 所属的组改成
+   <parameter>group</parameter>（通过组名或组 ID
+   指定）。
+  </para>
+  <para>
+   只有超级用户可以任意修改文件的组，其它用户可能只能将文件的组改成该用户自己所在的组。
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term><parameter>filename</parameter></term>
+     <listitem>
+      <para>
+       文件的路径。
+      </para>
+     </listitem>
+    </varlistentry>
+    <varlistentry>
+     <term><parameter>group</parameter></term>
+     <listitem>
+      <para>
+       组的名称或数字。
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+   &return.success;
+  </para>
+ </refsect1>
+
+ <refsect1 role="examples">
+  &reftitle.examples;
+  <para>
+   <example>
+    <title>改变文件所属的组</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+$filename = 'shared_file.txt';
+$format = "%s's Group ID @ %s: %d\n";
+printf($format, $filename, date('r'), filegroup($filename));
+chgrp($filename, 8);
+clearstatcache(); // do not cache filegroup() results
+printf($format, $filename, date('r'), filegroup($filename));
+?>
+]]>
+    </programlisting>
+   </example>
+  </para>
+ </refsect1>
+
+ <refsect1 role="notes">
+  &reftitle.notes;
+  &note.no-remote;
+  &note.sm.uidcheck;
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>chown</function></member>
+    <member><function>chmod</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"~/.phpdoc/manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->

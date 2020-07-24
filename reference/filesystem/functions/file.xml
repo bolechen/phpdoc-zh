@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Revision$ -->
+<!-- EN-Revision: 325214 Maintainer: HonestQiao Status: ready -->
+<!-- Reviewed: no Maintainer: HonestQiao -->
+<refentry xml:id="function.file" xmlns="http://docbook.org/ns/docbook">
+ <refnamediv>
+  <refname>file</refname>
+  <refpurpose>把整个文件读入一个数组中</refpurpose>
+ </refnamediv>
+ 
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>array</type><methodname>file</methodname>
+   <methodparam><type>string</type><parameter>filename</parameter></methodparam>
+   <methodparam choice="opt"><type>int</type><parameter>flags</parameter><initializer>0</initializer></methodparam>
+   <methodparam choice="opt"><type>resource</type><parameter>context</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+   把整个文件读入一个数组中。
+  </para>
+    <note>
+   <para>
+    你可以通过  <function>file_get_contents</function>  以字符串形式获取文件的内容。
+   </para>
+  </note>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term><parameter>filename</parameter></term>
+     <listitem>
+      <para>
+       文件的路径。
+      </para>
+      &tip.fopen-wrapper;
+     </listitem>
+    </varlistentry>
+    <varlistentry>
+     <term><parameter>flags</parameter></term>
+     <listitem>
+      <para>
+       可选参数 <parameter>flags</parameter> 可以是以下一个或多个常量：
+       <variablelist>
+        <varlistentry>
+         <term>
+          <constant>FILE_USE_INCLUDE_PATH</constant>
+         </term>
+         <listitem>
+          <simpara>
+           在 <link 
+           linkend="ini.include-path">include_path</link> 中查找文件。
+          </simpara>
+         </listitem>
+        </varlistentry>
+        <varlistentry>
+         <term>
+          <constant>FILE_IGNORE_NEW_LINES</constant>
+         </term>
+         <listitem>
+          <simpara>
+           在数组每个元素的末尾不要添加换行符
+          </simpara>
+         </listitem>
+        </varlistentry>
+        <varlistentry>
+         <term>
+          <constant>FILE_SKIP_EMPTY_LINES</constant>
+         </term>
+         <listitem>
+          <simpara>
+           跳过空行
+          </simpara>
+         </listitem>
+        </varlistentry>
+        <!-- FIXME PHP_6
+        <varlistentry>
+         <term>
+          <constant>FILE_TEXT</constant>
+         </term>
+         <listitem>
+          <simpara>
+           The content is returned in UTF-8 encoding. You can specify a different
+           encoding by creating a custom context. This flag cannot be used with 
+           <constant>FILE_BINARY</constant>.
+          </simpara>
+         </listitem>
+        </varlistentry>
+        <varlistentry>
+         <term>
+          <constant>FILE_BINARY</constant>
+         </term>
+         <listitem>
+          <simpara>
+           The content is read as binary data. This is the default setting 
+           and cannot be used with <constant>FILE_TEXT</constant>.
+          </simpara>
+         </listitem>
+        </varlistentry>
+        -->
+       </variablelist>
+      </para>
+     </listitem>
+    </varlistentry>
+    <varlistentry>
+     <term><parameter>context</parameter></term>
+     <listitem>
+      <para>
+       A context resource created with the 
+       <function>stream_context_create</function> function.
+      </para>
+      <para>
+       &note.context-support;
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+   Returns the file in an array. Each element of the array corresponds to a
+   line in the file, with the newline still attached. Upon failure,
+   <function>file</function> returns &false;.
+  </para>
+  <note>
+   <para>
+    Each line in the resulting array will include the line ending, unless
+    <constant>FILE_IGNORE_NEW_LINES</constant> is used, so you still need to
+    use <function>rtrim</function> if you do not want the line ending
+    present.
+   </para>
+  </note>
+  &note.line-endings;
+ </refsect1>
+
+ <refsect1 role="changelog">
+  &reftitle.changelog;
+  <para>
+   <informaltable>
+    <tgroup cols="2">
+     <thead>
+      <row>
+       <entry>&Version;</entry>
+       <entry>&Description;</entry>
+      </row>
+     </thead>
+     <tbody>
+      <!-- FIXME PHP_6
+      <row>
+       <entry>6.0.0</entry>
+       <entry>
+        Added support for the <constant>FILE_TEXT</constant> and 
+        <constant>FILE_BINARY</constant> flags.
+        <note>
+         <para>
+          For <literal>forward compatibility</literal>, these constants are
+          available as of PHP 5.2.7
+         </para>
+        </note>
+       </entry>
+      </row>
+       -->
+      <row>
+       <entry>5.0.0</entry>
+       <entry>
+        增加了参数  <parameter>context</parameter>
+       </entry>
+      </row>
+      <row>
+       <entry>5.0.0</entry>
+       <entry>
+        Prior to PHP 5.0.0 the <parameter>flags</parameter> parameter only
+        covered <link linkend="ini.include-path">include_path</link> and was
+        enabled with 1
+       </entry>
+      </row>
+      <row>
+       <entry>4.3.0</entry>
+       <entry>
+        <function>file</function> 开始是二进制安全的
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </informaltable>
+  </para>
+ </refsect1>
+
+ <refsect1 role="examples">
+  &reftitle.examples;
+  <para>
+   <example>
+    <title><function>file</function> 例子</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+// 将一个文件读入数组。本例中通过 HTTP 从 URL 中取得 HTML 源文件。
+
+$lines = file('http://www.example.com/');
+
+// 在数组中循环，显示 HTML 的源文件并加上行号。
+
+foreach ($lines as $line_num => $line) {
+    echo "Line #<b>{$line_num}</b> : " . htmlspecialchars($line) . "<br />\n";
+}
+
+// 另一个例子将 web 页面读入字符串。参见 file_get_contents()。
+
+$html = implode('', file('http://www.example.com/'));
+
+// 从 PHP 5 开始可以使用可选标记参数
+$trimmed = file('somefile.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+?>
+]]>
+    </programlisting>
+   </example>
+  </para>
+ </refsect1>
+
+ <refsect1 role="notes">
+  &reftitle.notes;
+  &warn.ssl-non-standard;
+ </refsect1>
+
+  <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>readfile</function></member>
+    <member><function>fopen</function></member>
+    <member><function>fsockopen</function></member>
+    <member><function>popen</function></member>
+    <member><function>file_get_contents</function></member>
+    <member><function>include</function></member>
+    <member><function>stream_context_create</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"~/.phpdoc/manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->

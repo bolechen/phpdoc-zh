@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE translation SYSTEM "../doc-base/phpbook/phpbook-xsml/translation.dtd">
+<!-- $Id$ -->
+<translation xmlns="http://docbook.org/ns/docbook">
+
+ <intro>
+  PHP 文档简体中文翻译工作由简体中文翻译小组负责，成员见下表。<br />
+  有关问题及翻译工作情况请访问 <a href="http://news.php.net/group.php?group=php.doc.zh">php.doc.zh 讨论组</a>。<br />
+  有关中文翻译外部支持团队的工作情况请访问 <a href="http://code.google.com/p/phpdoc-zh/">PHP手册中文翻译补完计划</a>。
+ </intro>
+
+ <chmindex>
+  本文件生成日期：<datetime /><br />
+  最新版本可与 <a href="http://www.php.net/download-docs">http://www.php.net/download-docs</a> 处下载。
+ </chmindex>
+
+ <translators>
+
+ <!--
+ 
+   请翻译人员在这里登记。请注意这里的 nick 是自己的英文昵称，可以任意取。大部分同志都只是
+   简单地使用了自己的 CVS/SVN 帐号名。但是必须要与翻译文档标头的 Maintainer: 保持一致，
+   并且大小写字母也要相同以便于进行版本检查。
+
+ -->
+
+  <person name="王远之" email="dallas@php.net"      nick="dallas"    vcs="yes" />
+  <person name="肖理达" email="nio@php.net"         nick="nio"       vcs="yes" />
+  <person name="肖盛文" email="yincheng@php.net"    nick="yincheng"  vcs="yes" />
+  <person name="黄啸宇" email="class007@php.net"    nick="class007"  vcs="yes" />
+  <person name="宋琪"   email="gregory@php.net"     nick="Gregory"   vcs="yes" />
+  <person name="陈伯乐" email="bole.Chen@gmail.com" nick="Avenger"   vcs="yes" />
+  <person name="陈岗"   email="eniac2008@php.net"   nick="Altair"    vcs="yes" />
+  <person name="陈浩"   email="haohappy@php.net"    nick="Haohappy"  vcs="yes" />
+  <person name="刘铭"   email="lm92@php.net"        nick="lm92"      vcs="yes" />
+  <person name="崔岩"   email="cysoft@php.net"      nick="cysoft"    vcs="yes" />
+  <person name="穆少磊" email="verdana@php.net"     nick="verdana"   vcs="yes" />
+  <person name="李达"   email="thomaslio@php.net"   nick="thomaslio" vcs="yes" />
+  <person name="周皓"   email="zhouhao007@php.net"  nick="micky"     vcs="yes" />
+  <person name="孙翯"   email="yorgo@php.net"       nick="yorgo"     vcs="yes" />
+  <person name="容毓"   email="phpvcn@gmail.com"    nick="esayr"     vcs="yes" />
+  <person name="吴煊春" email="herrywood@php.net"   nick="herrywood" vcs="yes" />
+  <person name="乔楚  " email="honestqiao@php.net"  nick="HonestQiao"  vcs="yes" />
+  <person name="戴劼"     email="daijie@php.net"    nick="daijie"      vcs="yes" />
+  <person name="Ying Hong"   email="hytest@php.net"   nick="hytest"    vcs="yes" />
+  <person name="Xinchen Hui" email="laruence@php.net" nick="laruence"  vcs="yes" />
+  <person name="Reeze Xia"   email="reeze@php.net"    nick="reeze"     vcs="yes" />
+  <person name="洪建家"      email="jiania@php.net"   nick="Jiania"    vcs="yes" />
+  <person name="周梦康" email="zhoumengkang@php.net" nick="zhoumengkang" vcs="yes" />
+  <person name="袁玉强" email="yuanyuqiang@gmail.com" nick="yuanyuqiang" vcs="yes" />
+  <person name="CHU Zhaowei" email="jhdxr@php.net" nick="jhdxr" vcs="yes" />
+  <person name="高驰涛" email="neeke@php.net" nick="neeke" vcs="yes" />
+  <person name="段小强" email="duanxiaoqiang@php.net" nick="duanxiaoqiang" vcs="yes" />
+ </translators>
+
+ <work-in-progress>
+
+<!--
+
+本文件内容仅用于 revcheck 中，为更加明确，暂按照以下方式填写：
+
+<file name="目前工作内容"    person="昵称" type="目前工作状态"
+ date="开始日期" revision="目前工作范围" />
+
+-->
+  <file name="更新过期文件"            person="dallas"   type="进行中"    date="2013-03-08"  revision="所有过期文件" />
+  <file name="language/oop5/*"       person="lm92"     type="暂停"  date="2007-05-10" />
+  <file name="更新过期文件"            person="yincheng" type="暂停"      date="2005-07-05" />
+  <file name="翻译部分新文件"           person="class007" type="暂停"      date="2005-04-17" />
+  <file name="更新过期文件"            person="Avenger"  type="暂停"    date="2006-04-19" />
+  <file name="翻译新章节及消灭编译错误"   person="Haohappy"  type="更新中"    date="2008-12-13" />
+  <file name="同步language中除oop5外的其它部分到英文最新版本" person="eniac2008" type="更新中" date="2008-12-14" />
+  <file name="reference/array/*"     person="eniac2008" type="更新中" date="2008-12-21" />
+  <file name="更新过期文件，翻译新章节" person="herrywood" type="更新中" date="2010-6-3" />
+  <file name="组织PHP手册中文翻译补完计划，更新过期文件和翻译新章节"    person="HonestQiao" type="更新中" date="2010-8-12" revision="全部" />
+ </work-in-progress>
+
+</translation>

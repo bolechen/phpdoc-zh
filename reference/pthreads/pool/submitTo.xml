@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Revision$ -->
+<!-- EN-Revision: 341655 Maintainer: yuanyuqiang Status: ready -->
+<!-- Reviewed: no -->
+
+<refentry xml:id="pool.submitTo" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>Pool::submitTo</refname>
+  <refpurpose>提交一个任务到特定的 Worker 以执行</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <modifier>public</modifier> <type>int</type><methodname>Pool::submitTo</methodname>
+   <methodparam><type>int</type><parameter>worker</parameter></methodparam>
+   <methodparam><type>Threaded</type><parameter>task</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+   将对象提交到 Pool 中某个特定的 Worker 对象来执行。Worker 的下标从 0 开始，
+   由于 Pool 中的线程是懒加载机制，
+   所以 Worker 对象仅在 Pool 需要执行任务的时候才会真正被创建。
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <variablelist>
+   <varlistentry>
+    <term><parameter>worker</parameter></term>
+    <listitem>
+     <para>
+      用来执行任务的 Worker 对象，下标从 <literal>0</literal> 开始。
+     </para>
+    </listitem>
+   </varlistentry>
+   <varlistentry>
+    <term><parameter>task</parameter></term>
+    <listitem>
+     <para>
+  要执行的任务
+     </para>
+    </listitem>
+   </varlistentry>
+  </variablelist>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+ 接受新加入对象的 Worker 对象ID
+  </para>
+ </refsect1>
+
+ <refsect1 role="examples">
+  &reftitle.examples;
+  <para>
+   <example>
+    <title>提交任务到特定的 Worker</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+class Task extends Threaded {
+    public function run() {
+        var_dump(Thread::getCurrentThreadID());
+    }
+}
+
+$pool = new Pool(2);
+
+$pool->submit(new Task());
+
+for ($i = 0; $i < 5; ++$i) {
+    $pool->submitTo(0, new Task()); // 将所有的任务都入栈到下标为 0 的 Worker
+}
+
+$pool->submitTo(1, new Task()); // 由于第二个 Worker 尚未存在，所以不可以将任务入栈到第二个 Worker
+
+$pool->shutdown();
+]]>
+    </programlisting>
+    &example.outputs;
+    <screen>
+<![CDATA[
+int(4475011072)
+int(4475011072)
+int(4475011072)
+int(4475011072)
+int(4475011072)
+int(4475011072)
+
+Fatal error: Uncaught Exception: The selected worker (1) does not exist in %s:%d
+]]>
+    </screen>
+   </example>
+  </para>
+ </refsect1>
+
+</refentry>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"~/.phpdoc/manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->

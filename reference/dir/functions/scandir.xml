@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Revision$ -->
+<!-- EN-Revision: 312682 Maintainer: HonestQiao Status: ready -->
+<!-- Reviewed: no Maintainer: HonestQiao -->
+<refentry xml:id="function.scandir" xmlns="http://docbook.org/ns/docbook">
+ <refnamediv>
+  <refname>scandir</refname>
+  <refpurpose>列出指定路径中的文件和目录</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>array</type><methodname>scandir</methodname>
+   <methodparam><type>string</type><parameter>directory</parameter></methodparam>
+   <methodparam choice="opt"><type>int</type><parameter>sorting_order</parameter></methodparam>
+   <methodparam choice="opt"><type>resource</type><parameter>context</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+   返回一个 <type>array</type>，包含有
+   <parameter>directory</parameter> 中的文件和目录。
+  </para>
+
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term><parameter>directory</parameter></term>
+     <listitem>
+      <para>
+       要被浏览的目录
+      </para>
+     </listitem>
+    </varlistentry>
+    <varlistentry>
+     <term><parameter>sorting_order</parameter></term>
+     <listitem>
+      <para>
+       默认的排序顺序是按字母升序排列。如果使用了可选参数
+       <parameter>sorting_order</parameter>（设为
+       1），则排序顺序是按字母降序排列。
+      </para>
+     </listitem>
+    </varlistentry>
+    <varlistentry>
+     <term><parameter>context</parameter></term>
+     <listitem>
+      <para>
+       <parameter>context</parameter> 参数的说明见手册中的
+       <link linkend="ref.stream">Streams API</link> 一章。
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+   成功则返回包含有文件名的 <type>array</type>，如果失败则返回
+   &false;。如果 <parameter>directory</parameter>
+   不是个目录，则返回布尔值 &false; 并生成一条
+   <constant>E_WARNING</constant> 级的错误。
+  </para>
+ </refsect1>
+
+ <refsect1 role="changelog">
+  &reftitle.changelog;
+  <para>
+   <informaltable>
+    <tgroup cols="2">
+     <thead>
+      <row>
+       <entry>&Version;</entry>
+       <entry>&Description;</entry>
+      </row>
+     </thead>
+     <tbody>
+      <row>
+       <entry>5.4.0</entry>
+       <entry>
+        <parameter>sorting_order</parameter> now accepts constants. Any
+        nonzero value caused descending order in previous versions.
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </informaltable>
+  </para>
+ </refsect1>
+
+ <refsect1 role="examples">
+  &reftitle.examples;
+  <para>
+   <example>
+    <title>一个简单的 <function>scandir</function> 例子</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+$dir    = '/tmp';
+$files1 = scandir($dir);
+$files2 = scandir($dir, 1);
+
+print_r($files1);
+print_r($files2);
+?>
+]]>
+    </programlisting>
+    &example.outputs.similar;
+    <screen>
+<![CDATA[
+Array
+(
+    [0] => .
+    [1] => ..
+    [2] => bar.php
+    [3] => foo.txt
+    [4] => somedir
+)
+Array
+(
+    [0] => somedir
+    [1] => foo.txt
+    [2] => bar.php
+    [3] => ..
+    [4] => .
+)
+]]>
+    </screen>
+   </example>
+  </para>
+  <para>
+   <example>
+    <title><function>scandir</function> 在 PHP 4 中的实现</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+$dir = "/tmp";
+$dh  = opendir($dir);
+while (false !== ($filename = readdir($dh))) {
+    $files[] = $filename;
+}
+
+sort($files);
+
+print_r($files);
+
+rsort($files);
+
+print_r($files);
+
+?>
+]]>
+    </programlisting>
+    &example.outputs.similar;
+    <screen>
+<![CDATA[
+Array
+(
+    [0] => .
+    [1] => ..
+    [2] => bar.php
+    [3] => foo.txt
+    [4] => somedir
+)
+Array
+(
+    [0] => somedir
+    [1] => foo.txt
+    [2] => bar.php
+    [3] => ..
+    [4] => .
+)
+]]>
+    </screen>
+   </example>
+  </para>
+ </refsect1>
+
+ <refsect1 role="notes">
+  &reftitle.notes;
+  &tip.fopen-wrapper;
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>opendir</function></member>
+    <member><function>readdir</function></member>
+    <member><function>glob</function></member>
+    <member><function>is_dir</function></member>
+    <member><function>sort</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+</refentry>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"~/.phpdoc/manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->

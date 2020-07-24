@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Revision$ -->
+<!-- $Author$ -->
+<!-- EN-Revision: 327173 Maintainer: dallas Status: ready -->
+
+<chapter xml:id="install.pecl" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>PECL 扩展库安装</title>
+ 
+ <sect1 xml:id="install.pecl.intro">
+  <title>PECL 安装介绍</title>
+  <simpara>
+   <link xlink:href="&url.pecl;">PECL</link>
+   是通过 <link xlink:href="&url.php.pear;">PEAR</link> 打包系统来的
+   PHP 扩展库仓库，本章内容示范了怎样取得并安装 PECL 扩展。
+  </simpara>
+  <simpara>
+   以下指南中假定 <literal>/your/phpsrcdir/</literal> 是 PHP
+   源程序的路径，<literal>extname</literal> 是 PECL
+   扩展库的名字。自己根据实际情况调整。此外还假定用户熟悉
+   <link xlink:href="&url.php.pear.cli;">pear 命令</link>。
+   PEAR 手册里 <literal>pear</literal> 命令的信息同样适用于 <literal>pecl</literal>。
+  </simpara>
+  <simpara>
+   要使用共享扩展库，必须经过编译，安装，然后加载。以下说明的方法提供了怎样编译和安装扩展库的各种指导，但并不会自动加载它们。可以通过将其包括在
+   &php.ini; 中用
+   <link linkend="ini.extension">extension</link> PHP 指令加载，或者
+   用 <function>dl</function> 函数。
+  </simpara>
+  <simpara>
+   当编译 PHP 模块时，拥有各种工具（autoconf，automake，libtool
+   等）的已知好使的版本很重要。所需工具和所需版本的详情见<link
+   xlink:href="&url.php.anongit;">匿名 Git 说明</link>。
+  </simpara>
+ </sect1>
+ 
+ <sect1 xml:id="install.pecl.downloads">
+  <title>下载 PECL 扩展库</title>
+  <simpara>
+   下载 PECL 扩展库有几种方法，如：
+  </simpara>
+  <itemizedlist>
+   <listitem>
+    <simpara>
+     <literal>pecl install extname</literal> 命令会自动下载扩展代码，
+     所以在这种情况下不需要再次下载。
+    </simpara>
+   </listitem>
+   <listitem>
+    <simpara>
+     <link xlink:href="&url.pecl;">&url.pecl;</link>
+    </simpara>
+    <simpara>
+     PECL 网站包括有 PHP
+     开发组提供的不同扩展库的信息。这里的信息包括：更新记录，版本说明，需求，以及其它信息。
+    </simpara>
+   </listitem>
+   <listitem>
+    <simpara>
+     <literal>pecl download extname</literal>
+    </simpara>
+    <simpara>
+     PECL 网站中列出的 PECL 扩展库的发行版本可以用
+     <link xlink:href="&url.php.pear.cli;">pear
+      命令</link>来下载和安装。也可以指明具体的修正版。
+    </simpara>
+   </listitem>
+   <listitem>
+    <simpara>
+     <acronym>SVN</acronym>
+    </simpara>
+    <simpara>
+     大多数 PECL 扩展库也在 <acronym>SVN</acronym> 中。其 web 页面见
+     be seen at <link xlink:href="&url.php.svn;pecl/">&url.php.svn;pecl/</link>。要直接从
+     <acronym>SVN</acronym> 中下载，用以下命令：
+    </simpara>
+    <para>
+     <screen>
+      $ svn checkout http://svn.php.net/repository/pecl/extname/trunk extname
+     </screen>
+    </para>
+   </listitem>
+   <listitem>
+    <simpara>
+     Windows 下载：
+    </simpara>
+    <simpara>
+     目前 PHP 项目没有为 Windows 下 PECL 扩展编译二进制文件。要在 Windows
+     下编译 PHP，请阅读<link linkend="install.windows.building">有关章节</link>。
+    </simpara>
+   </listitem>
+  </itemizedlist>
+ </sect1>
+ 
+ <sect1 xml:id="install.pecl.windows">
+  <title>在 Windows 上安装 PHP 扩展</title>
+  <para>
+   在 Windows 上有两种加载 PHP 扩展的方式：把扩展编译进 PHP，或者加载 DLL。加载预编译的扩展是更简单更被推荐的方式。
+  </para>
+  <para>
+   要加载某扩展，需要在系统中有其相对应的“.dll”文件。所有扩展都会由
+   PHP 小组定期自动编译（如何下载见下节）。
+  </para>
+  <para>
+   要将一扩展编译入 PHP，请参考<link
+   linkend="install.windows.building">从源程序编译</link>一章。
+  </para>
+  <para>
+   要编译一个独立的扩展（即 DLL 文件），请参考<link
+   linkend="install.windows.building">从源程序编译</link>一章。如果在
+   PHP 发行包和 PCEL 中都没有某 DLL 文件，那可能需要自己编译之后才能使用该扩展。
+  </para>
+  
+  <sect2 xml:id="install.pecl.windows.find">
+   <title>去哪里找扩展库？</title>
+   <para>
+    PHP 扩展库通常称为“php_*.dll”（其中星号代表具体某扩展的名字），位于“PHP\ext”目录下（在
+    PHP 4 中位于“PHP\extensions”目录下）。
+   </para>
+   <para>
+    PHP 发行包中包括了大多数开发者最常用到的扩展库。这些被称为“核心”扩展库。
+   </para>
+   <para>
+    不过呢，如果用户所需要的功能并没有被任何核心扩展提供，那还是有可能在
+    PECL 中找到。PHP Extension Community Library（PECL，PHP 扩展社区库）是个
+    PHP 扩展的储存室，提供了对于所有已知扩展的下载及开发途径的指南。
+   </para>
+   <para>
+    如果用户开发了一个自己使用的扩展，可以考虑将其发布到 PECL
+    中以便于其他有相同需求的用户使用。一个很好的副作用是可以得到其他用户的反馈，感谢，错误报告甚至修正／更新。不过在向
+    PECL 发布扩展之前，请先阅读 &url.pecl.submit;。
+   </para>
+  </sect2>
+  
+  <sect2 xml:id="install.pecl.windows.which">
+   <title>下载哪个扩展？</title>
+   <para>
+    <emphasis>用户常常会发现每个 DLL 都有好几个版本：</emphasis>
+    <itemizedlist>
+     <listitem>
+      <simpara>
+       不同的版本号（至少前两个数字要一致）
+      </simpara>
+     </listitem>
+     <listitem>
+      <simpara>
+       不同的线程安全性设定
+      </simpara>
+     </listitem>
+     <listitem>
+      <simpara>
+       不同的处理器体系（x86，x64，...)
+      </simpara>
+     </listitem>
+     <listitem>
+      <simpara>
+       不同的排错设定
+      </simpara>
+     </listitem>
+     <listitem>
+      <simpara>
+       <literal>其它</literal>
+      </simpara>
+     </listitem>
+    </itemizedlist>
+   </para>
+   <para>
+    请记住用户的扩展设定应该与所使用的 PHP 可执行文件的设定都保持一致。以下脚本可以显示<emphasis>所有</emphasis>
+    PHP 设定：
+   </para>
+   <para>
+    <example>
+     <title><function>phpinfo</function> call</title>
+     <programlisting role="php">
+<![CDATA[
+<?php
+phpinfo();
+?>
+]]>
+     </programlisting>
+    </example>
+   </para>
+   <para>
+    或者在命令行运行：
+    <screen>
+<![CDATA[
+drive:\\path\to\php\executable\php.exe -i
+]]>
+    </screen>
+   </para>
+  </sect2>
+  
+  <sect2 xml:id="install.pecl.windows.loading">
+   <title>载入一个扩展</title>
+   <para>
+    最常见的方式是在 <filename>php.ini</filename> 配置文件里包含一个 PHP
+    扩展。请注意很多扩展已经在 <filename>php.ini</filename> 里了，仅需要移除分号来激活它们。
+    <screen>
+<![CDATA[
+;extension=php_extname.dll
+]]>
+    </screen>
+    <screen>
+<![CDATA[
+extension=php_extname.dll
+]]>
+    </screen>
+   </para>
+   <para>
+    不过呢，有些 web 服务器会搞混，因为其并不一定使用和 PHP
+    可执行文件处于同一目录下的 <filename>php.ini</filename>
+    文件。要搞清楚具体使用了哪一个 <filename>php.ini</filename>
+    文件，在 <function>phpinfo</function> 的输出中查看：
+    <screen>
+<![CDATA[
+Configuration File (php.ini) Path  C:\WINDOWS
+]]>
+    </screen>
+    <screen>
+<![CDATA[
+Loaded Configuration File   C:\Program Files\PHP\5.2\php.ini
+]]>
+    </screen>
+   </para>
+   <para>
+    激活一个扩展后，保存 <filename>php.ini</filename>
+    文件并重启动 web 服务器，然后用
+    <function>phpinfo</function> 再次查看确定。新的扩展应该有其自己的一节。
+   </para>
+  </sect2>
+  
+  <sect2 xml:id="install.pecl.windows.problemsolving">
+   <title>解决问题</title>
+   <para>
+    如果某扩展并未在 <function>phpinfo</function>
+    中显示，应该查看日志以确定问题出在哪里。
+   </para>
+   <para>
+    如果是在命令行使用 PHP（CLI），扩展加载出错信息会直接在屏幕显示。
+   </para>
+   <para>
+    如果在 web 服务器中使用 PHP，则日志文件的位置与格式各不相同。请阅读所使用的
+    web 服务器之文档以确定日志文件的位置，这与 PHP 本身并无关系。
+   </para>
+   <para>
+    最常见的问题是 DLL 文件的位置，<filename>php.ini</filename>
+    中“<link linkend="ini.extension-dir">extension_dir</link>”设定的值，以及编译时的设置不匹配。
+   </para>
+   <para>
+    如果问题出在编译时设置不匹配，那可能所下载的 DLL
+    文件不对。可以尝试重新下载一个设置匹配的扩展。此外，<function>phpinfo</function>
+    可以起到很大帮助。
+   </para>
+  </sect2>
+  
+ </sect1>
+ 
+ <sect1 xml:id="install.pecl.pear">
+  <title>用 PEAR 编译共享 PECL 扩展库</title>
+  <simpara>
+   PECL 使建立共享 PHP 扩展库更容易。用
+   <link xlink:href="&url.php.pear.cli;">pecl 命令</link>这样做：
+  </simpara>
+  <para>
+   <screen>
+    $ pecl install extname
+   </screen>
+  </para>
+  <simpara>
+   这将下载 <emphasis>extname</emphasis> 的源代码，编译之，并将
+   <filename>extname.so</filename> 安装到 <link
+   linkend="ini.extension-dir">extension_dir</link>
+   中。然后 <filename>extname.so</filename> 就可以通过 &php.ini; 加载了。
+  </simpara>
+  <simpara>
+   默认情况下，<literal>pecl</literal> 命令不会安装标记为
+   <literal>alpha</literal> 或
+   <literal>beta</literal> 状态的包。如果没有 <literal>stable</literal>
+   包可用，也可以用以下命令安装一个 <literal>beta</literal> 包：
+  </simpara>
+  <para>
+   <screen>
+    $ pecl install extname-beta
+   </screen>
+  </para>
+  <para>
+   也可以用此命令安装一个指定的版本：
+  </para>
+  <para>
+   <screen>
+    $ pecl install extname-0.1
+   </screen>
+  </para>
+  <note>
+   <para>
+    在 &php.ini; 中激活扩展之后，需要重新启动 web 服务以使更改生效。
+   </para>
+  </note>
+ </sect1>
+ 
+ <sect1 xml:id="install.pecl.phpize">
+  <title>用 phpize 编译共享 PECL 扩展库</title>
+  <simpara>
+   有时候不能用 <literal>pecl</literal>
+   安装命令。这可能是因为在防火墙后面，或者是因为想要安装的扩展库还没有
+   PECL 兼容的包，例如 SVN 中尚未发布的扩展库。如果要编译这种扩展库，可以用更底层的编译工具来手工进行编译。
+  </simpara>
+  <simpara>
+   <literal>phpize</literal> 命令是用来准备 PHP
+   扩展库的编译环境的。下面例子中，扩展库的源程序位于
+   <filename>extname</filename> 目录中：
+  </simpara>
+  <para>
+   <screen>
+<![CDATA[
+$ cd extname
+$ phpize
+$ ./configure
+$ make
+# make install
+]]>
+   </screen>
+  </para>
+  <simpara>
+   成功的安装将创建 <filename>extname.so</filename> 并放置于
+   PHP 的<link linkend="ini.extension-dir">扩展库目录</link>中。需要调整
+   &php.ini;，加入 <literal>extension=extname.so</literal>
+   这一行之后才能使用此扩展库。
+  </simpara>
+  <simpara>
+   如果系统中没有 <literal>phpize</literal> 命令并且使用了预编译的包（例如
+   RPM），那要安装 PHP 包相应的开发版本，此版本通常包含了
+   <literal>phpize</literal> 命令以及相应的用于编译 PHP 及其扩展库的头文件。
+  </simpara>
+  <simpara>
+   使用 <command>phpize --help</command> 命令可以显示此命令用法。
+  </simpara>
+ </sect1>
+ 
+ <sect1 xml:id="install.pecl.php-config">
+  <title>php-config</title>
+  
+  <para>
+   php-config 是一个简单的命令行脚本用于获取所安装的 PHP 配置的信息。
+  </para>
+  
+  <para>
+   在编译扩展时，如果安装有多个 PHP 版本，可以在配置时用
+   <literal>--with-php-config</literal> 选项来指定使用哪一个版本编译，该选项指定了相对应的
+   php-config 脚本的路径。
+  </para>
+  
+  <para>
+   php-config 脚本在命令行所能使用的选项可以通过 <option>-h</option> 选项来显示：
+   <screen>
+<![CDATA[
+Usage: /usr/local/bin/php-config [OPTION]
+Options:
+  --prefix            [...]
+  --includes          [...]
+  --ldflags           [...]
+  --libs              [...]
+  --extension-dir     [...]
+  --include-dir       [...]
+  --php-binary        [...]
+  --php-sapis         [...]
+  --configure-options [...]
+  --version           [...]
+  --vernum            [...]
+]]>
+   </screen>
+  </para>
+  
+  <para>
+   <table>
+    <title>命令行选项</title>
+    <tgroup cols="2">
+     <thead>
+      <row>
+       <entry>选项</entry>
+       <entry>说明</entry>
+      </row>
+     </thead>
+     <tbody>
+      <row>
+       <entry>--prefix</entry>
+       <entry>PHP 所安装的路径前缀，例如 /usr/local</entry>
+      </row>
+      <row>
+       <entry>--includes</entry>
+       <entry>列出用 -I 选项包含的所有文件</entry>
+      </row>
+      <row>
+       <entry>--ldflags</entry>
+       <entry>PHP 编译时所使用的 LD 标志</entry>
+      </row>
+      <row>
+       <entry>--libs</entry>
+       <entry>PHP 编译时所附加的库</entry>
+      </row>
+      <row>
+       <entry>--extension-dir</entry>
+       <entry>扩展库的默认路径</entry>
+      </row>
+      <row>
+       <entry>--include-dir</entry>
+       <entry>头文件的默认路径前缀</entry>
+      </row>
+      <row>
+       <entry>--php-binary</entry>
+       <entry>PHP CLI 或者 CGI 可执行文件的完整路径</entry>
+      </row>
+      <row>
+       <entry>--php-sapis</entry>
+       <entry>列出所有可用的 SAPI 模块</entry>
+      </row>
+      <row>
+       <entry>--configure-options</entry>
+       <entry>重现当前 PHP 在编译时的配置选项</entry>
+      </row>
+      <row>
+       <entry>--version</entry>
+       <entry>PHP 版本号</entry>
+      </row>
+      <row>
+       <entry>--vernum</entry>
+       <entry>PHP 版本号，以整数表示</entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </para>
+ </sect1>
+ 
+ <sect1 xml:id="install.pecl.static">
+  <title>将 PECL 扩展库静态编译入 PHP</title>
+  <simpara>
+   有时可能需要将扩展库静态编译到 PHP 中。这需要将扩展库源程序放入
+   <filename>php-src/ext/</filename> 目录中去并告诉 PHP
+   编译系统来生成其配置脚本。
+  </simpara>
+  <para>
+   <screen>
+<![CDATA[
+$ cd /your/phpsrcdir/ext
+$ pecl download extname
+$ gzip -d < extname.tgz | tar -xvf -
+$ mv extname-x.x.x extname
+]]>
+   </screen>
+  </para>
+  <simpara>
+   这将产生以下目录：
+  </simpara>
+  <para>
+   <screen>
+    /your/phpsrcdir/ext/extname
+   </screen>
+  </para>
+  <simpara>
+   此时强制 PHP 重新生成配置脚本，然后正常编译 PHP：
+  </simpara>
+  <para>
+   <screen>
+    $ cd /your/phpsrcdir 
+    $ rm configure
+    $ ./buildconf --force
+    $ ./configure --help
+    $ ./configure --with-extname --enable-someotherext --with-foobar
+    $ make
+    $ make install
+   </screen>
+  </para>
+  <note>
+   <simpara>
+    要运行“buildconf”脚本，需要 autoconf 2.13 和 automake 1.4+（更新版本的
+    autoconf 也许能工作，但不被支持）。
+   </simpara>
+  </note>
+  <simpara>
+   是否用 <literal>--enable-extname</literal> 或 <literal>--with-extname</literal>
+   取决于扩展库。通常不需要外部库文件的扩展库使用
+   <literal>--enable</literal>。要确认的话，在 buildconf 之后运行：
+  </simpara>
+  <para>
+   <screen>
+    $ ./configure --help | grep extname
+   </screen>
+  </para>
+ </sect1>
+</chapter>   
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"~/.phpdoc/manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->

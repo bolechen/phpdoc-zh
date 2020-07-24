@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Revision$ -->
+<!-- EN-Revision: 334762 Maintainer: Szopen Xiao Status: ready -->
+<!-- Reviewed: no -->
+
+<part xml:id="spl.datastructures" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+ &spl.datastructures.intro.title;
+
+ <partintro>
+  <para>
+   SPL 提供了一套标准的数据结构。它们按底层实现进行分组, 通常定义了它们的一般应用领域。
+  </para>
+
+  <section>
+   <title>双向链表</title>
+
+   <para>
+    双链表 (DLL) 是一个链接到两个方向的节点列表。当底层结构是 DLL 时, 迭代器的操作、对两端的访问、节点的添加或删除都具有 O (1) 的开销。因此, 它为栈和队列提供了一个合适的实现。
+   </para>
+
+   <itemizedlist>
+    <listitem>
+     <simpara><classname>SplDoublyLinkedList</classname></simpara>
+     <itemizedlist>
+      <listitem><simpara><classname>SplStack</classname></simpara></listitem>
+      <listitem><simpara><classname>SplQueue</classname></simpara></listitem>
+     </itemizedlist>
+    </listitem>
+   </itemizedlist>
+
+  </section>
+  <section>
+   <title>堆</title>
+
+   <para>
+    堆是遵循堆属性的树状结构: 每个节点都大于或等于其子级, 使用对堆全局的已实现的比较方法进行比较。
+   </para>
+
+   <itemizedlist>
+    <listitem>
+     <simpara><classname>SplHeap</classname></simpara>
+     <itemizedlist>
+      <listitem><simpara><classname>SplMaxHeap</classname></simpara></listitem>
+      <listitem><simpara><classname>SplMinHeap</classname></simpara></listitem>
+     </itemizedlist>
+    </listitem>
+    <listitem>
+     <simpara><classname>SplPriorityQueue</classname></simpara>
+    </listitem>
+   </itemizedlist>
+
+  </section>
+
+  <section>
+   <title>数组</title>
+
+   <para>
+    数组是以连续方式存储数据的结构, 可通过索引进行访问。不要将它们与 php 数组混淆: php 数组实际上是按照有序的列表实现的。
+   </para>
+
+   <itemizedlist>
+    <listitem>
+     <simpara><classname>SplFixedArray</classname></simpara>
+    </listitem>
+   </itemizedlist>
+
+  </section>
+
+  <section>
+   <title>映射</title>
+
+   <para>
+    映射是一个数据拥有键值对。PHP 数组可以被看作是从整数/字符串到值的映射。SPL 提供了从对象到数据的映射。此映射也可用作对象集。
+   </para>
+
+   <itemizedlist>
+    <listitem>
+     <simpara><classname>SplObjectStorage</classname></simpara>
+    </listitem>
+   </itemizedlist>
+
+  </section>
+ </partintro>
+
+ &reference.spl.spldoublylinkedlist;
+ &reference.spl.splstack;
+ &reference.spl.splqueue;
+
+ &reference.spl.splheap;
+ &reference.spl.splmaxheap;
+ &reference.spl.splminheap;
+ &reference.spl.splpriorityqueue;
+
+ &reference.spl.splfixedarray;
+ &reference.spl.splobjectstorage;
+
+</part>
+
+
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"~/.phpdoc/manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->
+

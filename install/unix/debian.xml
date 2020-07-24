@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Revision$ -->
+<!-- EN-Revision: 299778  Maintainer: dallas Status: ready -->
+<sect1 xml:id="install.unix.debian" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Debian GNU/Linux 安装说明</title>
+ <para>
+  本节包含了在 
+  <link xlink:href="&url.debian;">Debian GNU/Linux</link>
+  下安装 PHP 的说明和提示。
+ </para>
+ <warning>
+  <para>
+   这里不支持非官方的第三方发行包。任何错误应报告给
+   Debian 开发组，除非该错误在使用从官方<link
+   xlink:href="&url.php.downloads;">下载</link>的最新版时仍能重现。
+  </para>
+ </warning>
+ <para>
+  尽管在 Unix 下编译 PHP 的指示也适用于 Debian，本节包含有一些特定信息，例如使用
+  <literal>apt-get</literal> 或者 <literal>aptitude</literal>
+  命令。本节中这两条命令可以互换。
+ </para>
+
+ <sect2 xml:id="install.unix.debian.apt">
+  <title>使用 APT</title>
+   <simpara>
+    首先，注意其它有关的包可能需要
+    <literal>libapache2-mod-php5</literal> 集成入
+    Apache 2，以及 PEAR 的 <literal>php-pear</literal>。
+   </simpara>
+   <simpara>
+    其次，在安装一个包之前，最好先确定该包是最新版。通常可以运行命令
+    <command>apt-get update</command>。
+   </simpara>
+   <example xml:id="install.unix.debian.apt.example">
+    <title>Debian 下将 PHP 安装入 Apache 2 的例子</title>
+    <programlisting role="shell">
+<![CDATA[
+# apt-get install php5-common libapache2-mod-php5 php5-cli
+]]>
+    </programlisting>
+   </example>
+   <simpara>
+    APT 将自动安装 Apache 2 的 PHP 5
+    模块以及所有依赖的库并激活之。应重启动
+    Apache 以使更改生效，例如：
+   </simpara>
+   <example xml:id="install.unix.debian.apt.example2">
+    <title>安装完 PHP 后停止并启动 Apache</title>
+    <programlisting role="shell">
+<![CDATA[
+# /etc/init.d/apache2 stop
+# /etc/init.d/apache2 start
+]]>
+    </programlisting>
+   </example>
+  </sect2>
+
+  <sect2 xml:id="install.unix.debian.config">
+   <title>更好地控制配置</title>
+   <simpara>
+    上一节中 PHP 仅安装了核心模块。很可能还需要更多模块，例如
+    <link linkend="book.mysql">MySQL</link>，<link
+    linkend="book.curl">cURL</link>，<link linkend="book.image">GD</link>
+    等。这些模块也可以通过 <literal>apt-get</literal> 命令安装。
+   </simpara>
+   <example xml:id="install.unix.debian.config.example">
+    <title>取得 PHP 附加软件包的列表</title>
+    <programlisting role="shell">
+<![CDATA[
+# apt-cache search php5
+# aptitude search php5
+# aptitude search php5 |grep -i mysql
+]]>
+    </programlisting>
+   </example>
+   <simpara>
+    以上命令的输出中列出了很多的包，其中有几个针对 PHP
+    的模块例如 php5-cgi，php5-cli 以及
+    php5-dev。决定好要安装哪些之后可以用
+    <literal>apt-get</literal> 或者 <literal>aptitude</literal>
+    来安装。Debian 会进行倚赖性检查，会给出提示，例如安装
+    MySQL 和 cURL：
+   </simpara>
+   <example xml:id="install.unix.debian.config.example2">
+    <title>安装 PHP 的 MySQL 和 cURL 支持</title>
+    <programlisting role="shell">
+<![CDATA[
+# apt-get install php5-mysql php5-curl
+]]>
+    </programlisting>
+   </example>
+   <simpara>
+    APT 会自动把适当的行添加到不同的 &php.ini;
+    相关文件中去，例如
+    <filename>/etc/php5/apache2/php.ini</filename>，<filename>/etc/php5/conf.d/pdo.ini</filename>
+    等，并且根据扩展，还会添加类似
+    <literal>extension=foo.so</literal> 的内容。不过还是需要重新启动
+    web 服务器（例如 Apache）以使这些改动生效。
+   </simpara>
+  </sect2>
+
+  <sect2 xml:id="install.unix.debian.faq">
+   <title>常见问题</title>
+   <itemizedlist>
+    <listitem>
+     <simpara>
+     如果 PHP 脚本没有通过 web 服务器被解析，则有可能是 PHP
+     没有被加入到 web 服务器的配置文件中，在 Debian
+     中可能是 <filename>/etc/apache2/apache2.conf</filename>
+     或类似文件。具体内容参见 Debian 手册。
+     </simpara>
+    </listitem>
+   <listitem>
+    <simpara>
+     如果某扩展貌似已经安装，但其函数却又未定义，确保合适的 ini
+     文件已被加载并且 web 服务器在安装后重新启动过。
+    </simpara>
+   </listitem>
+    <listitem>
+     <simpara>      
+      在 Debian（以及其它 Linux 变种）下有两个基本命令来安装包：<literal>apt-get</literal>
+      和 <literal>aptitude</literal>。不过要解释这两个命令的细微区别已超出本手册范围。
+     </simpara>
+    </listitem>
+   </itemizedlist>
+ </sect2>
+</sect1>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"~/.phpdoc/manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->

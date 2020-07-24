@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Revision$ -->
+<!-- EN-Revision: 323642 Maintainer: HonestQiao Status: ready -->
+<!-- Reviewed: no Maintainer: HonestQiao -->
+<section xml:id="apache.configuration" xmlns="http://docbook.org/ns/docbook">
+ &reftitle.runtime;
+ <para>
+  Apache 的 PHP 模块的行为受 &php.ini; 的设置影响。在 &php.ini;
+  中的设置可以被服务器配置文件或本地的 &htaccess; 文件中的
+  <link linkend="configuration.changes.apache">php_flag</link>
+  设置所覆盖。 
+ </para>
+ <example>
+  <title>用 &htaccess; 禁用一个目录的 PHP 解析</title>
+  <programlisting>php_flag engine off</programlisting>
+ </example>
+ <para>
+  <table>
+   <title>Apache 配置选项</title>
+   <tgroup cols="4">
+    <thead>
+     <row>
+      <entry>&Name;</entry>
+      <entry>&Default;</entry>
+      <entry>&Changeable;</entry>
+      <entry>&Changelog;</entry>
+     </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><link linkend="ini.engine">engine</link></entry>
+      <entry>"1"</entry>
+      <entry>PHP_INI_ALL</entry>
+      <entry>自 PHP 4.0.5 起可用</entry>
+     </row>
+     <row>
+      <entry><link linkend="ini.child-terminate">child_terminate</link></entry>
+      <entry>"0"</entry>
+      <entry>PHP_INI_ALL</entry>
+      <entry>自 PHP 4.0.5 起可用</entry>
+     </row>
+     <row>
+      <entry><link linkend="ini.last-modified">last_modified</link></entry>
+      <entry>"0"</entry>
+      <entry>PHP_INI_ALL</entry>
+      <entry>自 PHP 4.0.5 起可用</entry>
+     </row>
+     <row>
+      <entry><link linkend="ini.xbithack">xbithack</link></entry>
+      <entry>"0"</entry>
+      <entry>PHP_INI_ALL</entry>
+      <entry>自 PHP 4.0.5 起可用</entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </table>
+  &ini.php.constants;
+ </para>
+
+ &ini.descriptions.title;
+
+ <para>
+  <variablelist>
+   <varlistentry xml:id="ini.engine">
+    <term>
+     <parameter>engine</parameter>
+     <type>boolean</type>
+    </term>
+    <listitem>
+     <para>
+      打开或关闭 PHP 解析。本指令仅在使用 PHP 的 Apache
+      模块版本时才有用。可以基于目录或者虚拟主机来打开或者关闭
+      PHP。将 <userinput>engine off</userinput>
+      放到 &httpd.conf; 文件中适当的位置就可以激活或禁用 PHP。
+     </para>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="ini.child-terminate">
+    <term>
+     <parameter>child_terminate</parameter>
+     <type>boolean</type>
+    </term>
+    <listitem>
+     <para>
+      指定 PHP 脚本在请求结束后是否可以要求终止子进程。参见
+      <function>apache_child_terminate</function>。
+     </para>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="ini.last-modified">
+    <term>
+     <parameter>last_modified</parameter>
+     <type>boolean</type>
+    </term>
+    <listitem>
+     <para>
+      在本次请求中发送一个头信息 Last-Modified:，显示 PHP 脚本最后被修改的日期。
+     </para>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="ini.xbithack">
+    <term>
+     <parameter>xbithack</parameter>
+     <type>boolean</type>
+    </term>
+    <listitem>
+     <para>
+      不管文件结尾是什么，将文件作为 PHP 以可执行位组来解析。
+<!-- 原文如下，有些不懂。
+      Parse files with executable bit set as PHP regardless of their file ending.
+-->
+     </para>
+    </listitem>
+   </varlistentry>
+  </variablelist>
+ </para>
+
+</section>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"~/.phpdoc/manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->
+
+

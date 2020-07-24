@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Revision$ -->
+<!-- $Author$ -->
+<!-- EN-Revision: 344469 Maintainer: dallas Status: ready -->
+<sect1 xml:id="language.oop5.basic" xmlns="http://docbook.org/ns/docbook">
+ <title>基本概念</title>
+
+ <sect2 xml:id="language.oop5.basic.class">
+  <title>class</title>
+  <para>
+   每个类的定义都以关键字 <literal>class</literal>
+   开头，后面跟着类名，后面跟着一对花括号，里面包含有类的属性与方法的定义。
+  </para>
+  <para>
+   类名可以是任何非 PHP
+   <link linkend="reserved">保留字</link>的合法标签。一个合法类名以字母或下划线开头，后面跟着若干字母，数字或下划线。以正则表达式表示为：<literal>[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*</literal>。
+  </para>
+  <para>
+   一个类可以包含有属于自己的<link
+   linkend="language.oop5.constants">常量</link>，<link
+   linkend="language.oop5.properties">变量</link>（称为“属性”）以及函数（称为“方法”）。
+  </para>
+  <example>
+   <title>简单的类定义</title>
+   <programlisting role="php">
+<![CDATA[
+<?php
+class SimpleClass
+{
+    // 声明属性
+    public $var = 'a default value';
+
+    // 声明方法
+    public function displayVar() {
+        echo $this->var;
+    }
+}
+?>
+]]>
+   </programlisting>
+  </example>
+  <para>
+   当一个方法在类定义内部被调用时，有一个可用的伪变量
+   <varname>$this</varname>。<varname>$this</varname>
+   是一个到主叫对象的引用（通常是该方法所从属的对象，但如果是从第二个对象<link
+   linkend="language.oop5.static">静态</link>调用时也可能是另一个对象）。
+  </para>
+  <para>
+   <example xml:id="language.oop5.basic.class.this">
+    <title><varname>$this</varname> 伪变量的示例</title>
+     <simpara>
+      We're assuming that error_reporting is disabled for this example;
+      otherwise the following code would trigger deprecated and strict notices,
+      respectively, depending on the PHP version.
+     </simpara>
+    <programlisting role="php">
+<![CDATA[
+<?php
+class A
+{
+    function foo()
+    {
+        if (isset($this)) {
+            echo '$this is defined (';
+            echo get_class($this);
+            echo ")\n";
+        } else {
+            echo "\$this is not defined.\n";
+        }
+    }
+}
+
+class B
+{
+    function bar()
+    {
+        A::foo();
+    }
+}
+
+$a = new A();
+$a->foo();
+
+A::foo();
+
+$b = new B();
+$b->bar();
+
+B::bar();
+?>
+]]>
+    </programlisting>
+     &example.outputs.5;
+     <screen>
+<![CDATA[
+$this is defined (A)
+$this is not defined.
+$this is defined (B)
+$this is not defined.
+]]>
+     </screen>
+     &example.outputs.7;
+     <screen>
+<![CDATA[
+$this is defined (A)
+$this is not defined.
+$this is not defined.
+$this is not defined.
+]]>
+     </screen>
+   </example>
+  </para>
+ </sect2>
+
+ <sect2 xml:id="language.oop5.basic.new">
+  <title>new</title>
+  <para>
+   要创建一个类的实例，必须使用 <literal>new</literal>
+   关键字。当创建新对象时该对象总是被赋值，除非该对象定义了<link
+   linkend="language.oop5.decon">构造函数</link>并且在出错时抛出了一个<link
+   linkend="language.exceptions">异常</link>。类应在被实例化之前定义（某些情况下则必须这样）。
+  </para>
+  <para>
+   如果在 <literal>new</literal> 之后跟着的是一个包含有类名的字符串 <type>string</type>，则该类的一个实例被创建。如果该类属于一个命名空间，则必须使用其完整名称。
+  </para>
+  <example>
+   <title>创建实例</title>
+   <programlisting role="php">
+<![CDATA[
+<?php
+$instance = new SimpleClass();
+
+// 也可以这样做：
+$className = 'Foo';
+$instance = new $className(); // Foo()
+?>
+]]>
+   </programlisting>
+  </example>
+  <para>
+   在类定义内部，可以用 <literal>new self</literal> 和 <literal>new parent</literal> 创建新对象。
+  </para>
+  <para>
+   当把一个对象已经创建的实例赋给一个新变量时，新变量会访问同一个实例，就和用该对象赋值一样。此行为和给函数传递入实例时一样。可以用<link
+   linkend="language.oop5.cloning">克隆</link>给一个已创建的对象建立一个新实例。
+  </para>
+   <example>
+    <title>对象赋值</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+
+$instance = new SimpleClass();
+
+$assigned   =  $instance;
+$reference  =& $instance;
+
+$instance->var = '$assigned will have this value';
+
+$instance = null; // $instance and $reference become null
+
+var_dump($instance);
+var_dump($reference);
+var_dump($assigned);
+?>
+]]>
+    </programlisting>
+    &example.outputs;
+    <screen>
+<![CDATA[
+NULL
+NULL
+object(SimpleClass)#1 (1) {
+   ["var"]=>
+     string(30) "$assigned will have this value"
+}
+]]>
+    </screen>
+   </example>
+  <para>
+   PHP 5.3.0 引进了两个新方法来创建一个对象的实例：
+  </para>
+  <example>
+   <title>创建新对象</title>
+   <programlisting role="php">
+<![CDATA[
+<?php
+class Test
+{
+    static public function getNew()
+    {
+        return new static;
+    }
+}
+
+class Child extends Test
+{}
+
+$obj1 = new Test();
+$obj2 = new $obj1;
+var_dump($obj1 !== $obj2);
+
+$obj3 = Test::getNew();
+var_dump($obj3 instanceof Test);
+
+$obj4 = Child::getNew();
+var_dump($obj4 instanceof Child);
+?>
+]]>
+   </programlisting>
+   &example.outputs;
+   <screen>
+<![CDATA[
+bool(true)
+bool(true)
+bool(true)
+]]>
+   </screen>
+  </example>
+  
+   <para>
+    PHP 5.4.0 起，可以通过一个表达式来访问新创建对象的成员：
+   </para>
+   <example>
+    <title>访问新创建对象的成员</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+echo (new DateTime())->format('Y');
+?>
+]]>
+    </programlisting>
+    &example.outputs.similar;
+    <screen>
+<![CDATA[
+2016
+]]>
+    </screen>
+   </example>
+ </sect2>
+  
+  <sect2 xml:id="language.oop5.basic.properties-methods">
+   <title>Properties and methods</title>
+   <para>
+    Class properties and methods live in separate "namespaces", so it is
+    possible to have a property and a method with the same name. Referring to
+    both a property and a method has the same notation, and whether a property
+    will be accessed or a method will be called, solely depends on the context,
+    i.e. whether the usage is a variable access or a function call.
+   </para>
+   <example>
+    <title>Property access vs. method call</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+class Foo
+{
+    public $bar = 'property';
+    
+    public function bar() {
+        return 'method';
+    }
+}
+
+$obj = new Foo();
+echo $obj->bar, PHP_EOL, $obj->bar(), PHP_EOL;
+]]>
+    </programlisting>
+    &example.outputs;
+    <screen>
+<![CDATA[
+property
+method
+]]>
+    </screen>
+   </example>
+   <para>
+    That means that calling an <link linkend="functions.anonymous">anonymous
+    function</link> which has been assigned to a property is not directly
+    possible. Instead the property has to be assigned to a variable first, for
+    instance. As of PHP 7.0.0 it is possible to call such a property directly
+    by enclosing it in parentheses.
+   </para>
+   <example>
+    <title>Calling an anonymous function stored in a property</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+class Foo
+{
+    public $bar;
+    
+    public function __construct() {
+        $this->bar = function() {
+            return 42;
+        };
+    }
+}
+
+$obj = new Foo();
+
+// as of PHP 5.3.0:
+$func = $obj->bar;
+echo $func(), PHP_EOL;
+
+// alternatively, as of PHP 7.0.0:
+echo ($obj->bar)(), PHP_EOL;
+]]>
+    </programlisting>
+    &example.outputs;
+    <screen>
+<![CDATA[
+42
+]]>
+    </screen>
+   </example>
+  </sect2>
+
+ <sect2 xml:id="language.oop5.basic.extends">
+  <title>extends</title>
+  <para>
+   一个类可以在声明中用 <literal>extends</literal>
+   关键字继承另一个类的方法和属性。PHP不支持多重继承，一个类只能继承一个基类。
+  </para>
+  <para>
+   被继承的方法和属性可以通过用同样的名字重新声明被覆盖。但是如果父类定义方法时使用了
+   <link linkend="language.oop5.final">final</link>，则该方法不可被覆盖。可以通过
+   <link linkend="language.oop5.paamayim-nekudotayim">parent::</link>
+   来访问被覆盖的方法或属性。
+  </para>
+  <para>
+   当覆盖方法时，参数必须保持一致否则 PHP 将发出 <constant>E_STRICT</constant>
+   级别的错误信息。但构造函数例外，构造函数可在被覆盖时使用不同的参数。
+  </para>
+  <example>
+   <title>简单的类继承</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+class ExtendClass extends SimpleClass
+{
+    // Redefine the parent method
+    function displayVar()
+    {
+        echo "Extending class\n";
+        parent::displayVar();
+    }
+}
+
+$extended = new ExtendClass();
+$extended->displayVar();
+?>
+]]>
+    </programlisting>
+    &example.outputs;
+    <screen>
+<![CDATA[
+Extending class
+a default value
+]]>
+    </screen>
+   </example>
+ </sect2>
+ 
+  <sect2 xml:id="language.oop5.basic.class.class">
+   <title>::class</title>
+   
+   <para>
+    自 PHP 5.5 起，关键词 <literal>class</literal> 也可用于类名的解析。使用 <literal>ClassName::class</literal> 你可以获取一个字符串，包含了类 <literal>ClassName</literal> 的完全限定名称。这对使用了
+    <link linkend="language.namespaces">命名空间</link> 的类尤其有用。
+   </para>
+   <para>
+    <example xml:id="language.oop5.basic.class.class.name">
+     <title>类名的解析</title>
+     <programlisting role="php">
+<![CDATA[
+<?php
+namespace NS {
+    class ClassName {
+    }
+    
+    echo ClassName::class;
+}
+?>
+]]>
+     </programlisting>
+     &example.outputs;
+     <screen>
+<![CDATA[
+NS\ClassName
+]]>
+     </screen>
+    </example>
+   </para>
+   <note>
+    <para>The class name resolution using <literal>::class</literal> is a
+     compile time transformation. That means at the time the class name string
+     is created no autoloading has happened yet. As a consequence, class names
+     are expanded even if the class does not exist. No error is issued in
+     that case.
+    </para>
+   </note>
+  </sect2>
+</sect1>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"~/.phpdoc/manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->

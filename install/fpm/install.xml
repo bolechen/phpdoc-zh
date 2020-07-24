@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Revision$ -->
+<!-- EN-Revision: 335820 Maintainer: HonestQiao Status: ready -->
+  <sect1 xml:id="install.fpm.install" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <title>安装</title>
+    
+    <sect2 xml:id="install.fpm.install.compiling">
+     <title>从源代码编译</title>
+     <para>
+      编译 PHP 时需要 <literal>--enable-fpm</literal> 配置选项来激活 FPM 支持。
+     </para>
+     <para>
+      以下为 FPM 编译的具体配置参数（全部为可选参数）：
+     </para>
+     <itemizedlist>
+      <listitem>
+       <para>
+        <literal>--with-fpm-user</literal> - 设置 FPM 运行的用户身份（默认 - nobody）
+       </para>
+      </listitem>
+      <listitem>
+       <para>
+        <literal>--with-fpm-group</literal> - 设置 FPM 运行时的用户组（默认 - nobody）
+       </para>
+      </listitem>
+      <listitem>
+       <para>
+        <literal>--with-fpm-systemd</literal> - 启用 systemd 集成 (默认 - no)
+       </para>
+      </listitem>
+      <listitem>
+       <para>
+        <literal>--with-fpm-acl</literal> - 使用POSIX 访问控制列表
+        (默认 - no) 5.6.5版本起有效
+       </para>
+      </listitem>
+     </itemizedlist>
+    </sect2>
+  </sect1>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"~/.phpdoc/manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->

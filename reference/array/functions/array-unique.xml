@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Revision$ -->
+<!-- EN-Revision: 334426 Maintainer: HonestQiao Status: ready -->
+<refentry xml:id="function.array-unique" xmlns="http://docbook.org/ns/docbook">
+   <refnamediv>
+    <refname>array_unique</refname>
+    <refpurpose>移除数组中重复的值</refpurpose>
+   </refnamediv>
+ <refsect1 role="description">
+  &reftitle.description;
+     <methodsynopsis>
+      <type>array</type><methodname>array_unique</methodname>
+      <methodparam><type>array</type><parameter>array</parameter></methodparam>
+    <methodparam choice="opt"><type>int</type><parameter>sort_flags</parameter><initializer>SORT_STRING</initializer></methodparam>
+     </methodsynopsis>
+    <para>
+     <function>array_unique</function> 接受
+     <parameter>array</parameter> 作为输入并返回没有重复值的新数组。
+    </para>
+    <para>
+     注意键名保留不变。<function>array_unique</function>
+     先将值作为字符串排序，然后对每个值只保留第一个遇到的键名，接着忽略所有后面的键名。这并不意味着在未排序的
+     <parameter>array</parameter> 中同一个值的第一个出现的键名会被保留。
+    </para>
+    <note>
+     <simpara>
+      当且仅当
+      <literal>(string) $elem1 === (string) $elem2</literal> 时两个单元被认为相同。
+      例如，字符串表达一样时，会使用首个元素。
+     </simpara>
+    </note>
+   </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term><parameter>array</parameter></term>
+     <listitem>
+      <para>
+       输入的数组。
+      </para>
+     </listitem>
+    </varlistentry>
+    <varlistentry>
+     <term><parameter>sort_flags</parameter></term>
+     <listitem>
+      <para>
+       第二个可选参数<parameter>sort_flags</parameter> 可用于修改排序行为：
+      </para>
+      <para>
+       排序类型标记：
+       <itemizedlist>
+        <listitem>
+         <simpara><constant>SORT_REGULAR</constant> - 按照通常方法比较（不修改类型）</simpara>
+        </listitem>
+        <listitem>
+         <simpara><constant>SORT_NUMERIC</constant> - 按照数字形式比较</simpara>
+        </listitem>
+        <listitem>
+         <simpara><constant>SORT_STRING</constant> - 按照字符串形式比较</simpara>
+        </listitem>
+        <listitem>
+         <simpara><constant>SORT_LOCALE_STRING</constant> - 根据当前的本地化设置，按照字符串比较。
+         </simpara>
+        </listitem>
+       </itemizedlist>
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+   返回过滤后的数组。
+  </para>
+ </refsect1>
+
+ <refsect1 role="changelog">
+  &reftitle.changelog;
+  <para>
+   <informaltable>
+    <tgroup cols="2">
+     <thead>
+      <row>
+       <entry>&Version;</entry>
+       <entry>&Description;</entry>
+      </row>
+     </thead>
+     <tbody>
+      <row>
+       <entry>5.2.10</entry>
+       <entry>
+        修改回 <parameter>sort_flags</parameter> 的默认值为
+        <constant>SORT_STRING</constant>。
+       </entry>
+      </row>
+      <row>
+       <entry>5.2.9</entry>
+       <entry>
+        增加可选选项<parameter>sort_flags</parameter>，默认值 <constant>SORT_REGULAR</constant>。
+        5.2.9 之前，此函数内部使用 <constant>SORT_STRING</constant> 排序。
+       </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </informaltable>
+  </para>
+ </refsect1>
+
+ <refsect1 role="examples">
+  &reftitle.examples;
+  <para>
+   <example>
+    <title><function>array_unique</function> 例子</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+$input = array("a" => "green", "red", "b" => "green", "blue", "red");
+$result = array_unique($input);
+print_r($result);
+?>
+]]>
+    </programlisting>
+    &example.outputs;
+    <screen role="php">
+<![CDATA[
+Array
+(
+    [a] => green
+    [0] => red
+    [1] => blue
+)
+]]>
+    </screen>
+   </example>
+  </para>
+  <para>
+   <example>
+    <title><function>array_unique</function> 和类型</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+$input = array(4, "4", "3", 4, 3, "3");
+$result = array_unique($input);
+var_dump($result);
+?>
+]]>
+    </programlisting>
+    &example.outputs;
+    <screen role="php">
+<![CDATA[
+array(2) {
+  [0] => int(4)
+  [2] => string(1) "3"
+}
+]]>
+    </screen>
+   </example>
+  </para>
+ </refsect1>
+ 
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>array_count_values</function></member>
+   </simplelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="notes">
+  &reftitle.notes;
+  <note>
+   <simpara>
+    注意， <function>array_unique</function> 不能应用于多维数组。
+   </simpara>
+  </note>
+ </refsect1>
+  </refentry>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"~/.phpdoc/manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->

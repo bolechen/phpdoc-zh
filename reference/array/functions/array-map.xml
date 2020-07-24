@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Revision$ -->
+<!-- EN-Revision: 339528 Maintainer: daijie Status: ready -->
+<refentry xmlns="http://docbook.org/ns/docbook" xml:id="function.array-map">
+   <refnamediv>
+    <refname>array_map</refname>
+    <refpurpose>
+     为数组的每个元素应用回调函数
+    </refpurpose>
+   </refnamediv>
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>array</type><methodname>array_map</methodname>
+   <methodparam><type>callable</type><parameter>callback</parameter></methodparam>
+   <methodparam><type>array</type><parameter>array1</parameter></methodparam>
+   <methodparam choice="opt"><type>array</type><parameter>...</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+   <function>array_map</function>：返回数组，是为 <parameter>array1</parameter> 每个元素应用 <parameter>callback</parameter>函数之后的数组。
+   <parameter>callback</parameter> 函数形参的数量和传给 <function>array_map</function> 数组数量，两者必须一样。
+  </para>
+   </refsect1>
+ 
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term><parameter>callback</parameter></term>
+     <listitem>
+      <para>
+       回调函数，应用到每个数组里的每个元素。
+      </para>
+     </listitem>
+    </varlistentry>
+    <varlistentry>
+     <term><parameter>array1</parameter></term>
+     <listitem>
+      <para>
+       数组，遍历运行 <parameter>callback</parameter> 函数。
+      </para>
+     </listitem>
+    </varlistentry>
+    <varlistentry>
+     <term><parameter>...</parameter></term>
+     <listitem>
+      <para>
+       数组列表，每个都遍历运行 <parameter>callback</parameter> 函数。
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+   返回数组，包含 <parameter>callback</parameter> 函数处理之后 <parameter>array1</parameter>  的所有元素。
+  </para>
+ </refsect1>
+
+ <refsect1 role="examples">
+  &reftitle.examples;
+  <para>
+     <example>
+      <title><function>array_map</function> 例子</title>
+      <programlisting role="php">
+<![CDATA[
+<?php
+function cube($n)
+{
+    return($n * $n * $n);
+}
+
+$a = array(1, 2, 3, 4, 5);
+$b = array_map("cube", $a);
+print_r($b);
+?>
+]]>
+      </programlisting>
+      <para>
+       这使得 <varname>$b</varname> 成为：
+      </para>
+      <screen>
+<![CDATA[
+Array
+(
+    [0] => 1
+    [1] => 8
+    [2] => 27
+    [3] => 64
+    [4] => 125
+)
+]]>
+      </screen>
+     </example>
+  </para>
+  <para>
+   <example>
+    <title><function>array_map</function> 使用匿名函数 (PHP 5.3.0 起)</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+$func = function($value) {
+    return $value * 2;
+};
+
+print_r(array_map($func, range(1, 5)));
+?>
+]]>
+    </programlisting>
+    <screen>
+<![CDATA[
+Array
+(
+    [0] => 2
+    [1] => 4
+    [2] => 6
+    [3] => 8
+    [4] => 10
+)
+]]>
+    </screen>
+   </example>
+  </para>
+  <para>
+   <example>
+    <title><function>array_map</function>：使用更多的数组</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+function show_Spanish($n, $m)
+{
+    return("The number $n is called $m in Spanish");
+}
+
+function map_Spanish($n, $m)
+{
+    return(array($n => $m));
+}
+
+$a = array(1, 2, 3, 4, 5);
+$b = array("uno", "dos", "tres", "cuatro", "cinco");
+
+$c = array_map("show_Spanish", $a, $b);
+print_r($c);
+
+$d = array_map("map_Spanish", $a , $b);
+print_r($d);
+?>
+]]>
+    </programlisting>
+    &example.outputs;
+    <screen>
+<![CDATA[
+// printout of $c
+Array
+(
+    [0] => The number 1 is called uno in Spanish
+    [1] => The number 2 is called dos in Spanish
+    [2] => The number 3 is called tres in Spanish
+    [3] => The number 4 is called cuatro in Spanish
+    [4] => The number 5 is called cinco in Spanish
+)
+
+// printout of $d
+Array
+(
+    [0] => Array
+        (
+            [1] => uno
+        )
+
+    [1] => Array
+        (
+            [2] => dos
+        )
+
+    [2] => Array
+        (
+            [3] => tres
+        )
+
+    [3] => Array
+        (
+            [4] => cuatro
+        )
+
+    [4] => Array
+        (
+            [5] => cinco
+        )
+
+)
+]]>
+    </screen>
+   </example>
+  </para>
+  <para>
+   传入两个及以上的数组时，它们元素数量将会相同。因为回调函数会并行地处理相互对应的元素。
+   如果几个数组的元素数量不一致：空元素会扩展短那个数组，直到长度和最长的数组一样。
+  </para>
+  <para>
+   此函数有个有趣的用法：传入 &null; 作为回调函数的名称，将创建多维数组（一个数组，内部包含数组。）
+  </para>
+  <para>
+   <example>
+    <title>多维数组：创建数组，内部包含数组</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+$a = array(1, 2, 3, 4, 5);
+$b = array("one", "two", "three", "four", "five");
+$c = array("uno", "dos", "tres", "cuatro", "cinco");
+
+$d = array_map(null, $a, $b, $c);
+print_r($d);
+?>
+]]>
+    </programlisting>
+    &example.outputs;
+    <screen>
+<![CDATA[
+Array
+(
+    [0] => Array
+        (
+            [0] => 1
+            [1] => one
+            [2] => uno
+        )
+
+    [1] => Array
+        (
+            [0] => 2
+            [1] => two
+            [2] => dos
+        )
+
+    [2] => Array
+        (
+            [0] => 3
+            [1] => three
+            [2] => tres
+        )
+
+    [3] => Array
+        (
+            [0] => 4
+            [1] => four
+            [2] => cuatro
+        )
+
+    [4] => Array
+        (
+            [0] => 5
+            [1] => five
+            [2] => cinco
+        )
+
+)
+]]>
+    </screen>
+   </example>
+  </para>
+  <para>
+   如果仅传入一个数组，键（key）会保留；传入多个数组，键（key）是整型数字的序列。
+  </para>
+  <para>
+   <example>
+    <title><function>array_map</function> 键（key）是 string</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+$arr = array("stringkey" => "value");
+function cb1($a) {
+    return array ($a);
+}
+function cb2($a, $b) {
+    return array ($a, $b);
+}
+var_dump(array_map("cb1", $arr));
+var_dump(array_map("cb2", $arr, $arr));
+var_dump(array_map(null,  $arr));
+var_dump(array_map(null, $arr, $arr));
+?>
+]]>
+    </programlisting>
+    &example.outputs;
+    <screen>
+<![CDATA[
+array(1) {
+  ["stringkey"]=>
+  array(1) {
+    [0]=>
+    string(5) "value"
+  }
+}
+array(1) {
+  [0]=>
+  array(2) {
+    [0]=>
+    string(5) "value"
+    [1]=>
+    string(5) "value"
+  }
+}
+array(1) {
+  ["stringkey"]=>
+  string(5) "value"
+}
+array(1) {
+  [0]=>
+  array(2) {
+    [0]=>
+    string(5) "value"
+    [1]=>
+    string(5) "value"
+  }
+}
+]]>
+    </screen>
+   </example>
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>array_filter</function></member>
+    <member><function>array_reduce</function></member>
+    <member><function>array_walk</function></member>
+    <member>&seealso.callback;</member>
+   </simplelist>
+  </para>
+ </refsect1>
+  </refentry>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"~/.phpdoc/manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->
