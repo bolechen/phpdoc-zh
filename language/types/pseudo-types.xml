@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $Author$ -->
 <!-- $Revision$-->
-<!-- EN-Revision: 341438 Maintainer: Altair Status: ready -->
+<!-- EN-Revision: 345238 Maintainer: Avenger Status: ready -->
+<!-- CREDITS: Altair, Avenger -->
 <sect1 xml:id="language.pseudo-types">
  <title>本文档中使用的伪类型与变量</title> 
  <para>
@@ -57,7 +57,8 @@
 
   <para>
    <literal>void</literal> 作为返回类型意味着函数的返回值是无用的。<literal>void</literal>
-   作为参数列表意味着函数不接受任何参数。
+   作为参数列表意味着函数不接受任何参数。从 PHP 7.1 开始 <literal>void</literal>
+   接受一个函数为返回类型。
   </para>
 
  </sect2>

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Revision$ -->
-<!-- $Author: eniac2008 -->
-<!-- EN-Revision: 327443 Maintainer: Altair Status: ready -->
-<!-- CREDITS: Geogory, dallas -->
+<!-- EN-Revision: 342126 Maintainer: Avenger Status: ready -->
+<!-- CREDITS: Geogory, dallas, Altair -->
 <sect1 xml:id="language.types.null">
  <title>NULL</title>
   
@@ -57,6 +56,10 @@ $var = NULL;
 
  <sect2 xml:id="language.types.null.casting">
   <title>转换到 <literal>NULL</literal></title>
+
+  <para>
+   &warn.deprecated.feature-7-2-0;
+  </para>
   
   <para>
    使用 <literal>(unset) $var</literal> 将一个变量转换为 <type>null</type>
