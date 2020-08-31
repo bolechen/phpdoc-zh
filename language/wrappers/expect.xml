@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Revision$ -->
-<!-- EN-Revision: 330316 Maintainer: daijie Status: ready -->
+<!-- EN-Revision: 347043 Maintainer: daijie Status: ready -->
 <!-- Reviewed: no -->
 
 <refentry xml:id="wrappers.expect" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" role="noversion">
@@ -22,7 +22,7 @@
     <link xlink:href="&url.pecl;">PECL</link> 上的 <link xlink:href="&url.pecl.package;expect">Expect</link> 扩展。
    </simpara>
   </note>
-  <simpara><filename>expect://</filename> PHP 4.3.0 and up (PECL) </simpara>
+  <simpara><filename>expect://</filename> (PECL) </simpara>
  </refsect1><!-- }}} -->
 
  <refsect1 role="usage"> <!-- {{{ -->
