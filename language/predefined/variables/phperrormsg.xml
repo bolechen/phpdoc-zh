@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Revision$ -->
-<!-- EN-Revision: 342126 Maintainer: daijie Status: ready -->
+<!-- EN-Revision: 347009 Maintainer: daijie Status: ready -->
 
 <phpdoc:varentry xmlns:phpdoc="http://php.net/ns/phpdoc" xml:id="reserved.variables.phperrormsg" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" role="noversion">
  <refnamediv>
@@ -10,6 +10,9 @@
 
  <refsynopsisdiv>
   &warn.deprecated.feature-7-2-0;
+  <simpara>
+   用 <function>error_get_last</function> 函数代替。 
+  </simpara>
  </refsynopsisdiv>
  
  <refsect1 role="description">
@@ -44,6 +47,15 @@ Wrong parameter count for strpos()
 ]]>
     </screen>
    </example>
+  </para>
+ </refsect1>
+
+ <refsect1 role="seealso">
+  &reftitle.seealso;
+  <para>
+   <simplelist>
+    <member><function>error_get_last</function></member>
+   </simplelist>
   </para>
  </refsect1>
  
