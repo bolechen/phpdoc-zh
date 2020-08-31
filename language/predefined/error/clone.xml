@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Revision$ -->
-<!-- EN-Revision: 342988 Maintainer: daijie Status: ready -->
+<!-- EN-Revision: 346964 Maintainer: daijie Status: ready -->
 <!-- Reviewed: no -->
 
 <refentry xml:id="error.clone" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -16,7 +16,7 @@
    <void />
   </methodsynopsis>
   <para>
-   Error 无法被克隆，错误此方法的结果是 fatal error。
+   Error 无法被克隆，调用该方法会导致 fatal error。
   </para>
  </refsect1>
  
@@ -35,7 +35,7 @@
  <refsect1 role="errors">
   &reftitle.errors;
   <para>
-   Error  <emphasis>无法</emphasis>克隆。
+   Error  <emphasis>无法</emphasis>被克隆。
   </para>
  </refsect1>
 </refentry>
