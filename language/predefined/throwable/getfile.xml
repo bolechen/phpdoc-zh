@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Revision$ -->
-<!-- EN-Revision: 341756 Maintainer: daijie Status: ready -->
+<!-- EN-Revision: 346964 Maintainer: daijie Status: ready -->
 
 <refentry xml:id="throwable.getfile" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
  <refnamediv>
   <refname>Throwable::getFile</refname>
-  <refpurpose>获取发生异常的文件</refpurpose>
+  <refpurpose>获取创建对象的文件</refpurpose>
  </refnamediv>
 
  <refsect1 role="description">
@@ -15,7 +15,7 @@
    <void />
   </methodsynopsis>
   <para>
-   返回对象抛出文件的名称
+   返回对象抛出的文件名称
   </para>
  </refsect1>
 
