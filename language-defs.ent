@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Revision$ -->
 <!-- EN-Revision: 345662 Maintainer: yincheng Status: ready -->
+<!-- Reviewed: avenger Maintainer: avenger -->
 <!-- Part titles used mostly in manual.xml itself -->
 <!ENTITY PHPManual           "PHP 手册">
 <!ENTITY Seealso             "参见">
