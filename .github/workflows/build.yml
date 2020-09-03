@@ -1,0 +1,20 @@
+name: Build Test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Run Build Test Script
+      run: |
+        svn checkout https://svn.php.net/repository/phpdoc/modules/doc-en
+        cd doc-en
+        git clone --depth=1 https://github.com/bolechen/phpdoc-zh.git zh
+        php doc-base/configure.php --enable-xml-details --disable-libxml-check --redirect-stderr-to-stdout --with-lang=zh
