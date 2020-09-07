@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Revision$ -->
-<!-- EN-Revision: 297028 Maintainer: daijie Status: ready -->
+<!-- EN-Revision: 347293 Maintainer: daijie Status: ready -->
 <!-- Reviewed: no -->
 
 <refentry xml:id="function.bzclose" xmlns="http://docbook.org/ns/docbook">
@@ -11,7 +11,7 @@
  <refsect1 role="description">
   &reftitle.description;
   <methodsynopsis>
-   <type>int</type><methodname>bzclose</methodname>
+   <type>bool</type><methodname>bzclose</methodname>
    <methodparam><type>resource</type><parameter>bz</parameter></methodparam>
   </methodsynopsis>
   <para>

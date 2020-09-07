@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Revision$ -->
-<!-- EN-Revision: 288721 Maintainer: daijie Status: ready -->
+<!-- EN-Revision: 347589 Maintainer: daijie Status: ready -->
 <!-- Reviewed: no -->
 
 <chapter xml:id="bc.setup" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -9,9 +9,7 @@
  <!-- {{{ Requirements -->
  <section xml:id="bc.requirements">
   &reftitle.required;
-  <para>
-  自 PHP 4.0.4，libbcmath 随同 PHP 一起发布。该扩展不需要任何外部的库。
-  </para>
+  &no.requirement;
  </section>
  <!-- }}} -->
 
