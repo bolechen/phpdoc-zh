@@ -1,4 +1,5 @@
 # PHP 中文手册翻译指南
+![](https://img.shields.io/github/workflow/status/bolechen/phpdoc-zh/Build%20Test)
 
 ## 在加入翻译小组之前
 
