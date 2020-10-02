@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Revision$ -->
-<!-- EN-Revision: 348405 Maintainer: daijie Status: ready -->
+<!-- EN-Revision: 350653 Maintainer: daijie Status: ready -->
   <refentry xml:id="function.intval" xmlns="http://docbook.org/ns/docbook">
    <refnamediv>
     <refname>intval</refname>
@@ -131,30 +131,6 @@ echo intval(true);                    // 1
    </para>
   </note>
  </refsect1>
-
- <refsect1 role="changelog"><!-- {{{ -->
-  &reftitle.changelog;
-  <para>
-   <informaltable>
-    <tgroup cols="2">
-     <thead>
-      <row>
-       <entry>&Version;</entry>
-       <entry>&Description;</entry>
-      </row>
-     </thead>
-     <tbody>
-      <row>
-       <entry>5.1.0</entry>
-       <entry>
-        当传入的 <parameter>var</parameter> 是 object，将会抛出 <constant>E_NOTICE</constant> 并返回 1。
-       </entry>
-      </row>
-     </tbody>
-    </tgroup>
-   </informaltable>
-  </para>
- </refsect1><!-- }}} -->
 
  <refsect1 role="seealso">
   &reftitle.seealso;
