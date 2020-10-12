@@ -2,9 +2,13 @@ name: Build Test
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+      - dev
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
+      - dev
   schedule:
     - cron: '0 0 * * *'
 
@@ -12,9 +16,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
+    # https://github.com/actions/checkout
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        path: 'zh'
+
     - name: Run Build Test Script
       run: |
-        svn checkout -q https://svn.php.net/repository/phpdoc/modules/doc-en
-        cd doc-en
-        git clone --depth=1 -q https://github.com/bolechen/phpdoc-zh.git zh
+        git clone --depth=1 https://github.com/php/doc-base.git doc-base
+        git clone --depth=1 https://github.com/php/doc-en.git en
         php doc-base/configure.php --enable-xml-details --disable-libxml-check --redirect-stderr-to-stdout --with-lang=zh
