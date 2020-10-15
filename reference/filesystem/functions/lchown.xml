@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $Revision: $ -->
-<!-- EN-Revision: 297028 Maintainer: bear Status: ready -->
+<!-- $Revision$ -->
+<!-- EN-Revision: 350871 Maintainer: bear Status: ready -->
 <!-- Reviewed: no -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xml:id="function.lchown">
@@ -78,7 +78,6 @@ lchown($link, 8);
  <refsect1 role="notes">
   &reftitle.notes;
   &note.no-remote;
-  &note.sm.uidcheck;
   &note.no-windows;
  </refsect1>
 
