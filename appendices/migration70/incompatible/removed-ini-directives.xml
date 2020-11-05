@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Revision$ -->
 <!-- EN-Revision: 337376 Maintainer: Jason Young Status: ready -->
-<!-- Reviewed: no -->
 
 <sect2 xml:id="migration70.incompatible.removed-ini-directives">
  <title>被移除掉的 INI 配置指令</title>
