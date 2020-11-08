@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Revision$ -->
-<!-- EN-Revision: 311148 Maintainer: HonestQiao Status: ready -->
+<!-- EN-Revision: 350655 Maintainer: HonestQiao Status: ready -->
 <!-- Reviewed: no Maintainer: HonestQiao -->
 <refentry xml:id="function.touch" xmlns="http://docbook.org/ns/docbook">
  <refnamediv>
@@ -62,30 +62,6 @@
   &reftitle.returnvalues;
   <para>
    &return.success;
-  </para>
- </refsect1>
-
- <refsect1 role="changelog">
-  &reftitle.changelog;
-  <para>
-   <informaltable>
-    <tgroup cols="2">
-     <thead>
-      <row>
-       <entry>&Version;</entry>
-       <entry>&Description;</entry>
-      </row>
-     </thead>
-     <tbody>
-      <row>
-       <entry>5.3.0</entry>
-       <entry>
-        能够修改 Windows 下目录的最后修改时间。
-       </entry>
-      </row>
-     </tbody>
-    </tgroup>
-   </informaltable>
   </para>
  </refsect1>
 
