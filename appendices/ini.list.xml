@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Revision$ -->
 <!-- $Author$ -->
-<!-- EN-Revision: 350721 Maintainer: Avenger Status: ready -->
+<!-- EN-Revision: 351245 Maintainer: Avenger Status: ready -->
+
 <section xml:id="ini.list" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>&php.ini; 配置选项列表</title>
   <para>
@@ -733,7 +734,7 @@
        <entry></entry>
       </row>
       <row>
-       <entry><link linkend="ini.image.jpeg-ignore-warning">gd.jpeg_ignore_warning</link></entry>
+       <entry><link linkend="ini.gd.jpeg-ignore-warning">gd.jpeg_ignore_warning</link></entry>
        <entry>"1"</entry>
        <entry>PHP_INI_ALL</entry>
        <entry>从 PHP 5.1.3 起可用。</entry>
@@ -1070,72 +1071,6 @@
        <entry></entry>
       </row>
       <row>
-       <entry><link linkend="ini.ifx.allow-persistent">ifx.allow_persistent</link></entry>
-       <entry>"1"</entry>
-       <entry>PHP_INI_SYSTEM</entry>
-       <entry>在 PHP 5.2.1 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.ifx.blobinfile">ifx.blobinfile</link></entry>
-       <entry>"1"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>在 PHP 5.2.1 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.ifx.byteasvarchar">ifx.byteasvarchar</link></entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>在 PHP 5.2.1 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.ifx.charasvarchar">ifx.charasvarchar</link></entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>在 PHP 5.2.1 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.ifx.default-host">ifx.default_host</link></entry>
-       <entry>NULL</entry>
-       <entry>PHP_INI_SYSTEM</entry>
-       <entry>在 PHP 5.2.1 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.ifx.default-password">ifx.default_password</link></entry>
-       <entry>NULL</entry>
-       <entry>PHP_INI_SYSTEM</entry>
-       <entry>在 PHP 5.2.1 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.ifx.default-user">ifx.default_user</link></entry>
-       <entry>NULL</entry>
-       <entry>PHP_INI_SYSTEM</entry>
-       <entry>在 PHP 5.2.1 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.ifx.max-links">ifx.max_links</link></entry>
-       <entry>"-1"</entry>
-       <entry>PHP_INI_SYSTEM</entry>
-       <entry>在 PHP 5.2.1 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.ifx.max-persistent">ifx.max_persistent</link></entry>
-       <entry>"-1"</entry>
-       <entry>PHP_INI_SYSTEM</entry>
-       <entry>在 PHP 5.2.1 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.ifx.nullformat">ifx.nullformat</link></entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>在 PHP 5.2.1 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.ifx.textasvarchar">ifx.textasvarchar</link></entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>在 PHP 5.2.1 中移除该选项。</entry>
-      </row>
-      <row>
        <entry><link linkend="ini.ignore-repeated-errors">ignore_repeated_errors</link></entry>
        <entry>"0"</entry>
        <entry>PHP_INI_ALL</entry>
@@ -1249,36 +1184,6 @@
        <entry>""</entry>
        <entry>PHP_INI_PERDIR</entry>
        <entry>从 PHP 5.3.0 起可用。（PHP_INI_SYSTEM|PHP_INI_PERDIR）</entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.maxdb.default-db">maxdb.default_db</link></entry>
-       <entry>NULL</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.maxdb.default-host">maxdb.default_host</link></entry>
-       <entry>NULL</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.maxdb.default-pw">maxdb.default_pw</link></entry>
-       <entry>NULL</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.maxdb.default-user">maxdb.default_user</link></entry>
-       <entry>NULL</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.maxdb.long-readlen">maxdb.long_readlen</link></entry>
-       <entry>"200"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
       </row>
       <row>
        <entry><link linkend="ini.max-execution-time">max_execution_time</link></entry>
@@ -1437,24 +1342,6 @@
        <entry></entry>
       </row>
       <xi:include xpointer="xmlns(db=http://docbook.org/ns/docbook) xpointer(id('mongo.configuration.list')/*)" />
-      <row>
-       <entry><link linkend="ini.msql.allow-persistent">msql.allow_persistent</link></entry>
-       <entry>"1"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.msql.max-links">msql.max_links</link></entry>
-       <entry>"-1"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.msql.max-persistent">msql.max_persistent</link></entry>
-       <entry>"-1"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
       <row>
        <entry>mssql.allow_persistent</entry>
        <entry>"1"</entry>
@@ -2046,42 +1933,6 @@
        <entry></entry>
       </row>
       <row>
-       <entry><link linkend="ini.safe-mode">safe_mode</link></entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_SYSTEM</entry>
-       <entry>在 PHP 5.4.0 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.safe-mode-allowed-env-vars">safe_mode_allowed_env_vars</link></entry>
-       <entry>"PHP_"</entry>
-       <entry>PHP_INI_SYSTEM</entry>
-       <entry>在 PHP 5.4.0 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.safe-mode-exec-dir">safe_mode_exec_dir</link></entry>
-       <entry>""</entry>
-       <entry>PHP_INI_SYSTEM</entry>
-       <entry>在 PHP 5.4.0 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.safe-mode-gid">safe_mode_gid</link></entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_SYSTEM</entry>
-       <entry>在 PHP 5.4.0 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.safe-mode-include-dir">safe_mode_include_dir</link></entry>
-       <entry>NULL</entry>
-       <entry>PHP_INI_SYSTEM</entry>
-       <entry>在 PHP 5.4.0 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry><link linkend="ini.safe-mode-protected-env-vars">safe_mode_protected_env_vars</link></entry>
-       <entry>"LD_LIBRARY_PATH"</entry>
-       <entry>PHP_INI_SYSTEM</entry>
-       <entry>在 PHP 5.4.0 中移除该选项。</entry>
-      </row>
-      <row>
        <entry><link linkend="ini.sendmail-from">sendmail_from</link></entry>
        <entry>NULL</entry>
        <entry>PHP_INI_ALL</entry>
@@ -2432,19 +2283,7 @@
        <entry>PHP_INI_SYSTEM</entry>
        <entry></entry>
       </row>
-      <row>
-       <entry><link linkend="ini.sqlite.assoc-case">sqlite.assoc_case</link></entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <!-- <xi:include xpointer="xmlns(db=http://docbook.org/ns/docbook) xpointer(id('sqlite3.configuration.list')/*)" /> -->
-      <row>
-       <entry>sybct.packet_size</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
+      <xi:include xpointer="xmlns(db=http://docbook.org/ns/docbook) xpointer(id('sqlite3.configuration.list')/*)" />
       <row>
        <entry><link linkend="ini.syslog.facility">syslog.facility</link></entry>
        <entry>"LOG_USER"</entry>
@@ -2607,288 +2446,6 @@
        <entry>"0"</entry>
        <entry>PHP_INI_ALL</entry>
        <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.auto_profile</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>在 Xdebug 2.0.0 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry>xdebug.auto_profile_mode</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>在 Xdebug 2.0.0 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry>xdebug.auto_trace</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.collect_includes</entry>
-       <entry>"1"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.collect_params</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.collect_return</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.collect_vars</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.default_enable</entry>
-       <entry>"1"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>在 Xdebug 1 时是 PHP_INI_SYSTEM。</entry>
-      </row>
-      <row>
-       <entry>xdebug.dump.COOKIE</entry>
-       <entry>NULL</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.dump.ENV</entry>
-       <entry>NULL</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.dump.FILES</entry>
-       <entry>NULL</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.dump.GET</entry>
-       <entry>NULL</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.dump.POST</entry>
-       <entry>NULL</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.dump.REQUEST</entry>
-       <entry>NULL</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.dump.SERVER</entry>
-       <entry>NULL</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.dump.SESSION</entry>
-       <entry>NULL</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.dump_globals</entry>
-       <entry>"1"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.dump_once</entry>
-       <entry>"1"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.dump_undefined</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.extended_info</entry>
-       <entry>"1"</entry>
-       <entry>PHP_INI_SYSTEM</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.idekey</entry>
-       <entry>""</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.manual_url</entry>
-       <entry>"http://www.php.net"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.max_nesting_level</entry>
-       <entry>"100"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.output_dir</entry>
-       <entry>"/tmp"</entry>
-       <entry>PHP_INI_PERDIR</entry>
-       <entry>在 Xdebug &lt;= 1.2.0 时是 PHP_INI_SYSTEM。 在 Xdebug 2.0.0 中移除该选项。</entry>
-      </row>
-      <row>
-       <entry>xdebug.profiler_aggregate</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_PERDIR</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.profiler_append</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_PERDIR</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.profiler_enable</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_PERDIR</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.profiler_enable_trigger</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_PERDIR</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.profiler_output_dir</entry>
-       <entry>"/tmp"</entry>
-       <entry>PHP_INI_PERDIR</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.profiler_output_name</entry>
-       <entry>"cachegrind.out.%p"</entry>
-       <entry>PHP_INI_PERDIR</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.remote_autostart</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.remote_enable</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_PERDIR</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.remote_handler</entry>
-       <entry>"dbgp"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.remote_host</entry>
-       <entry>"localhost"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.remote_log</entry>
-       <entry>""</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.remote_mode</entry>
-       <entry>"req"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.remote_port</entry>
-       <entry>"9000"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry></entry>
-      </row>
-      <row>
-       <entry>xdebug.show_exception_trace</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.show_local_vars</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.show_mem_delta</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.trace_format</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.trace_options</entry>
-       <entry>"0"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.trace_output_dir</entry>
-       <entry>"/tmp"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.trace_output_name</entry>
-       <entry>"trace.%c"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.var_display_max_children</entry>
-       <entry>"128"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.var_display_max_data</entry>
-       <entry>"512"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
-      </row>
-      <row>
-       <entry>xdebug.var_display_max_depth</entry>
-       <entry>"3"</entry>
-       <entry>PHP_INI_ALL</entry>
-       <entry>从 Xdebug 2.0.0 起可用。</entry>
       </row>
       <row>
        <entry><link linkend="ini.xmlrpc-errors">xmlrpc_errors</link></entry>

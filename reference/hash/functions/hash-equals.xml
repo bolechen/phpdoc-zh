@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Revision$ -->
-<!-- EN-Revision: 342644 Maintainer: yuanyuqiang Status: ready -->
+<!-- EN-Revision: 350953 Maintainer: yuanyuqiang Status: ready -->
 <!-- Reviewed: no -->
 
 <refentry xml:id="function.hash-equals" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -72,7 +72,7 @@
 <?php
 $expected  = crypt('12345', '$2a$07$usesomesillystringforsalt$');
 $correct   = crypt('12345', '$2a$07$usesomesillystringforsalt$');
-$incorrect = crypt('apple',  '$2a$07$usesomesillystringforsalt$');
+$incorrect = crypt('apple', '$2a$07$usesomesillystringforsalt$');
 
 var_dump(hash_equals($expected, $correct));
 var_dump(hash_equals($expected, $incorrect));
