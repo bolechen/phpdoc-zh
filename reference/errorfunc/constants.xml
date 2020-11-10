@@ -215,7 +215,7 @@
       (<type>integer</type>)
      </entry>
      <entry>
-      <constant>E_STRICT</constant>出外的所有错误和警告信息。
+      <constant>E_STRICT</constant>除外的所有错误和警告信息。
      </entry>
      <entry>
       <!-- FIXME PHP_6 32767 in PHP 6, -->
