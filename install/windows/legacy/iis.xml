@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Revision$ -->
-<!-- EN-Revision: 289705 Maintainer: thomaslio Status: ready -->
+<!-- EN-Revision: 339251 Maintainer: avenger Status: ready -->
 <!-- Reviewed: yes -->
 
-<sect2 xml:id="install.windows.iis" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+<sect2 xml:id="install.windows.legacy.iis" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
  <title>Microsoft IIS</title>
  <para>
   本部分将具体指导如何在微软 Internet 信息服务（IIS）上安装 PHP。
