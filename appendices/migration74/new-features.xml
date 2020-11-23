@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $Revision: 350263 $ -->
-<!-- EN-Revision: 350263 Maintainer: Avenger Status: partial -->
+<!-- $Revision$ -->
+<!-- EN-Revision: 351133 Maintainer: avenger Status: ready -->
 <!-- Reviewed: no -->
+
 
 <sect1 xml:id="migration74.new-features" xmlns:xlink="http://www.w3.org/1999/xlink">
  <title>新特性</title>
@@ -26,7 +27,7 @@ class User {
 ]]>
      </programlisting>
     </informalexample>
-    上面的例子中，会强制要求 <literal>$user->id</literal> 只能为 <type>integer</type>
+    上面的例子中，会强制要求 <literal>$user->id</literal> 只能为 <type>int</type>
     类型，同时 <literal>$user->name</literal> 只能为 <type>string</type> 类型。
    </para>
   </sect3>
